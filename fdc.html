@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="XcGRIRTex8n74LUqvfAA3F">
+<head data-page-node-id="IHZWZybC0f2a7yeMsnENY6">
+<meta charset="UTF-8" data-page-node-id="sCKSfo56AiARHn1FfAVYJ8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="9mIJqo1qWvVqO5IdJ94FpQ">
+<title>房地产项目开发全流程知识库 — 财税之家 / TaxHome</title>
+<style>
+  :root{
+    --ink:#1f2328; --ink2:#57606a; --ink3:#8b949e;
+    --line:#d8dee4; --line2:#eaeef2;
+    --bg:#ffffff; --bg2:#f6f8fa; --bg3:#fbfcfd;
+    --blue:#615ced; --blue-bg:#eeedfe;
+    --green:#2f6b18; --green-bg:#eaf3de;
+    --amber:#8a5309; --amber-bg:#faeeda;
+    --purple:#4a3fae; --purple-bg:#eeedfe;
+    --red:#a32d2d; --red-bg:#fcebeb;
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg3);color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+  /* 顶部底栏：整块做成通栏品牌紫（千问 Qwen 主色 #615CED）。
+     渐变由深紫 #3F33C4 → 品牌紫 #615CED → 收尾 #635CEF；
+     收尾刻意压暗（而非用更浅的紫），使白字对最浅端仍有 4.87:1 对比度，符合 WCAG AA */
+  header{background:linear-gradient(135deg,#3f33c4 0%,#615ced 52%,#635cef 100%);
+    color:#fff;border-radius:var(--radius);padding:22px;
+    margin:0 -22px 20px;border-bottom:none;box-shadow:0 2px 10px rgba(97,92,237,.22)}
+  h1{font-size:21px;font-weight:600;margin:0 0 6px;color:#fff;letter-spacing:.2px}
+  .sub{color:rgba(255,255,255,.94);font-size:13px}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+  .chip{font-size:12px;padding:3px 9px;border-radius:5px;background:var(--bg2);
+    border:1px solid var(--line);color:var(--ink2)}
+  .chip.warn{background:var(--amber-bg);border-color:#f0d9a8;color:var(--amber)}
+  .chip.info{background:var(--blue-bg);border-color:#d3d0fb;color:var(--blue)}
+  /* 绿底上的小标签改为半透明白，保证对比度 */
+  header .chip{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3);
+    color:#fff}
+  header .chip.warn{background:rgba(255,224,150,.22);border-color:rgba(255,224,150,.5);
+    color:#ffe9b0}
+  header .chip.info{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.42);
+    color:#fff}
+
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0 14px}
+  .toolbar input{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--line);
+    border-radius:8px;font-size:13px;font-family:inherit;background:#fff;color:var(--ink)}
+  .toolbar input:focus{outline:none;border-color:var(--blue)}
+  .btn{padding:8px 14px;border:1px solid var(--line);background:#fff;border-radius:8px;
+    font-size:13px;font-family:inherit;cursor:pointer;color:var(--ink2)}
+  .btn:hover{background:var(--bg2);color:var(--ink)}
+  .count{font-size:12px;color:var(--ink3);margin-left:auto}
+
+  nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  nav a{font-size:12.5px;padding:5px 11px;border-radius:14px;background:#fff;
+    border:1px solid var(--line);color:var(--ink2);text-decoration:none;transition:.15s}
+  nav a:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  section{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    margin-bottom:16px;overflow:hidden}
+  section > h2{font-size:14.5px;font-weight:600;margin:0;padding:11px 16px;
+    background:var(--bg2);border-bottom:1px solid var(--line2);display:flex;
+    align-items:center;gap:8px}
+  section > h2 .idx{display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:5px;font-size:11.5px;font-weight:600;
+    background:var(--blue-bg);color:var(--blue);flex:none}
+  .s2 > h2 .idx{background:var(--green-bg);color:var(--green)}
+  .s3 > h2 .idx{background:var(--amber-bg);color:var(--amber)}
+  .s4 > h2 .idx{background:#fdeaea;color:#b02a2a}
+  .s5 > h2 .idx{background:var(--red-bg);color:var(--red)}
+  section > h2 .tag{font-size:11.5px;font-weight:400;color:var(--ink3);margin-left:auto}
+
+  table{width:100%;border-collapse:collapse}
+  th{text-align:left;padding:9px 16px;font-size:12px;font-weight:500;color:var(--ink2);
+    background:var(--bg3);border-bottom:1px solid var(--line2);white-space:nowrap}
+  td{padding:9px 16px;font-size:13px;border-bottom:1px solid var(--line2);vertical-align:top}
+  tbody tr:hover{background:#f9fbfc}
+  tbody tr.hide{display:none}
+  td.k{font-weight:500;color:var(--ink)}
+  td.doc{color:var(--ink2)}
+  .dept{font-size:12.5px;color:var(--ink2)}
+  .num{font-variant-numeric:tabular-nums}
+  .flag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;margin-left:6px;
+    background:var(--amber-bg);color:var(--amber);vertical-align:1px}
+
+  .note{padding:9px 16px;font-size:12.5px;color:var(--ink2);background:var(--bg3);
+    border-top:1px solid var(--line2)}
+  .note.warn{background:var(--amber-bg);color:var(--amber)}
+
+  .lawh{font-size:11.8px;color:var(--ink2);line-height:1.5}
+  .lawh .law{display:block;font-size:11.3px;color:var(--ink3);margin-top:2px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:12px;padding:14px 16px}
+  .card{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .card h3{margin:0;padding:8px 12px;font-size:12.8px;font-weight:500;
+    background:var(--bg2);border-bottom:1px solid var(--line2)}
+  .card .bd{padding:10px 12px;font-size:12.3px;line-height:1.85}
+  .card .bd span.lb{color:var(--ink3)}
+  .card .bd .hl{color:var(--amber)}
+  .card .bd .bl{color:var(--blue)}
+  .disc{padding:11px 16px;font-size:12.3px;line-height:1.72;
+    background:var(--amber-bg);color:var(--amber);border-bottom:1px solid var(--line2)}
+  .disc b{font-weight:600}
+  table.lawtbl th{font-size:11.5px}
+  table.lawtbl td{font-size:12.5px}
+  .lv{display:inline-block;font-size:10.8px;padding:1px 5px;border-radius:3px;
+    margin-right:6px;vertical-align:1px;font-weight:500}
+  .lv1{background:var(--red-bg);color:var(--red)}
+  .lv2{background:var(--blue-bg);color:var(--blue)}
+  .lv3{background:var(--green-bg);color:var(--green)}
+  .lv4{background:#fdf0e3;color:#a15b12}
+
+  .lawh{font-size:12px;color:var(--ink3);font-weight:400}
+  td .law{display:block;font-size:11.5px;color:var(--ink3);margin-top:3px;line-height:1.5}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:12px;padding:14px 16px}
+  .card{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .card h3{margin:0;padding:8px 12px;font-size:12.8px;font-weight:500;
+    background:var(--bg2);border-bottom:1px solid var(--line2)}
+  .card .bd{padding:10px 12px;font-size:12.3px;line-height:1.85}
+  .card .bd div{margin-bottom:1px}
+  .card .bd span.lb{color:var(--ink3)}
+  .card .bd .hl{color:var(--amber)}
+  .disc{padding:11px 16px;font-size:12.3px;line-height:1.75;
+    background:var(--amber-bg);color:var(--amber);border-bottom:1px solid var(--line2)}
+
+  .xlink{font-size:11.5px;color:var(--blue);text-decoration:none;margin-left:6px}
+  .xlink:hover{text-decoration:underline}
+
+  /* 邀请海报区块 */
+  .promo{display:flex;gap:20px;align-items:center;flex-wrap:wrap;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 20px;margin-bottom:16px}
+  .promo figure{margin:0;flex:0 0 auto;text-align:center}
+  .promo img{display:block;width:180px;height:auto;border-radius:8px;
+    border:1px solid var(--line);cursor:zoom-in;transition:transform .18s}
+  .promo img:hover{transform:translateY(-2px)}
+  .promo .cap{font-size:11.5px;color:var(--ink3);margin-top:7px;text-align:center}
+  .promo .txt{flex:1 1 320px;min-width:260px}
+  .promo .txt h3{margin:0 0 7px;font-size:14.5px;font-weight:600}
+  .promo .txt p{margin:0 0 8px;font-size:13px;color:var(--ink2);line-height:1.75}
+  .promo .txt ul{margin:6px 0 10px;padding-left:18px;font-size:12.7px;
+    color:var(--ink2);line-height:1.85}
+  .promo .cta{display:inline-block;font-size:12.5px;padding:7px 14px;border-radius:7px;
+    background:var(--ink);color:#fff;text-decoration:none;border:1px solid var(--ink)}
+  .promo .cta:hover{background:var(--ink2);border-color:var(--ink2)}
+  .promo .note-sm{font-size:11.5px;color:var(--ink3);margin-top:9px;line-height:1.7}
+
+  /* 海报放大遮罩 */
+  .lightbox{position:fixed;inset:0;background:rgba(20,22,26,.82);z-index:9999;
+    display:none;align-items:center;justify-content:center;padding:24px}
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:min(92vw,460px);max-height:90vh;width:auto;height:auto;
+    border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+  .lightbox .cl{position:absolute;top:16px;right:22px;font-size:26px;color:#fff;
+    cursor:pointer;line-height:1;opacity:.85;background:none;border:none;padding:6px}
+  .lightbox .cl:hover{opacity:1}
+
+  @media print{
+    .promo img{cursor:default}
+    .lightbox{display:none !important}
+  }
+
+  footer{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--ink3);line-height:1.8}
+
+  mark{background:#fff3b0;padding:0 1px;border-radius:2px}
+
+  @media print{
+    body{background:#fff;font-size:11.5px}
+    .wrap{max-width:none;padding:0}
+    .toolbar,nav{display:none}
+    section{break-inside:avoid;border-color:#bbb;margin-bottom:10px}
+    /* 打印时去掉蓝底，改用细线分隔，避免大块底色耗墨 */
+    header{background:none !important;color:var(--ink);box-shadow:none;
+      margin:0 0 10px;padding:0 0 10px;border-bottom:1px solid #000}
+    header h1{color:var(--ink)}
+    header .sub{color:var(--ink2)}
+    header .chip,header .chip.info,header .chip.warn{background:var(--bg2);
+      border-color:var(--line);color:var(--ink2)}
+    th,td{padding:5px 8px}
+    tbody tr:hover{background:none}
+    @page{margin:12mm}
+  }
+</style>
+</head>
+<body data-page-node-id="KP5BMRi45zikuRKS9QM8I2">
+<div class="wrap" data-page-node-id="kPNwhWGmklWlZG9vZaTL29">
+
+<header data-page-node-id="573puTT8B5SDEXZwEG0Fzf">
+  <h1 data-page-node-id="Jx0gppzGO1tj6e4QjJYKOP">房地产项目开发全流程知识库</h1>
+  <div class="sub" data-page-node-id="hPR7ZbktFDvG2rzxYKcYLt">监管审批部门 · 文书证件 · 规费税费 · 资质资格 · 政策依据 · 证照要素</div>
+  <div class="meta" data-page-node-id="xU6akJwwjC3CVIrOUkEZfA">
+    <span class="chip info" data-page-node-id="E4laA3eE9aVqNisl0kBFiQ">口径：全国通用主线</span>
+    <span class="chip warn" data-page-node-id="VViUL9QRVEsfwckDqfTXLd">广东／广州实施细则有差异</span>
+    <span class="chip" data-page-node-id="2QoiSnMUdB0A0aGRFlU7ba">财税之家 CntaxHome</span>
+    <span class="chip" data-page-node-id="lZDU3B78jnC5HKyzTRMykI">2026-09-24</span>
+  </div>
+</header>
+
+<div class="toolbar" data-page-node-id="xzSA0Ehv2IVxUG6CcGAS2g">
+  <input id="q" type="search" placeholder="输入关键词检索，例如：预售、消防、契税、资质、规划许可……" data-page-node-id="Cy7rI3YkNagFWpTHBJvBjf">
+  <button class="btn" onclick="window.print()" data-page-node-id="TkWLHRn9SlGxCiWKwABWnq">打印 / 导出 PDF</button>
+  <button class="btn" id="clr" data-page-node-id="VwXCL1ixJghJUQbnQCf2yg">清空</button>
+  <span class="count" id="cnt" data-page-node-id="ycGuHODAndUL0NlSLGm17T"></span>
+</div>
+
+<nav data-page-node-id="RLcl0pzywAvtWHyFUXhHRV">
+  <a href="#s1" data-page-node-id="ygH0xA8Ltew4U43lRa4aTQ">一 、土地获取</a>
+  <a href="#s2" data-page-node-id="XwrBe6wG1mZ1vbBUj0X7N6">二、 规划报建</a>
+  <a href="#s3" data-page-node-id="3LgNEeG3KEylKK8MJEtUB3">三 、施工建设</a>
+  <a href="#s4" data-page-node-id="6fIypxtWVDasQdz9I163St">四 、预售销售</a>
+  <a href="#s5" data-page-node-id="C8P9ZytHLSqOuOU9Y1Ju2p">五 、竣工与交付</a>
+  <a href="#s6" data-page-node-id="hSvX8riiMCxBxdRHxZTdhd">六 、规费税费</a>
+  <a href="#s7" data-page-node-id="aSXDgCBEaKocTVtCQwilgI">七 、资质与资格</a>
+  <a href="#s8" data-page-node-id="iMxOore4vmA0nt0ZG5Xiqj">八、 政策法规依据</a>
+  <a href="#s9" data-page-node-id="htDIP3BRbOCEMQ1JKwN6aB">九 、证照要素示意</a>
+</nav>
+
+<section class="s1" id="s1" data-page-node-id="E1W5LcJL0aoO5wUffDfrDB">
+  <h2 data-page-node-id="jKMVTWYbxBB8eut3zQMTX7"><span class="idx" data-page-node-id="Vv1WUX9QTtgb5yE9Rspgzk">1</span>土地获取与前期准备<span class="tag" data-page-node-id="ZJYAPZGSZhV8CMJBT8OBvV">发证：规划和自然资源局 · 发改委 · 生态环境局</span></h2>
+  <table data-page-node-id="bOhm8kE4hHEJ1lOv64tJ0o">
+    <thead data-page-node-id="GwQAA9KbEsaOGdkKiX4iNZ"><tr data-page-node-id="HgZ5rysEhvMz6lmVHbbPj0"><th style="width:18%" data-page-node-id="p5yxejbA236r2u8GRpTu7Z">审批事项</th><th style="width:21%" data-page-node-id="Nu3Bnf80ONNPDYPAa2XCjd">监管部门</th><th style="width:28%" data-page-node-id="EocHGgh51n37FE13a0jJEf">出具文书 / 证件</th><th data-page-node-id="p4zXDBTzBr9wATXLTFrtLS">政策依据</th></tr></thead>
+    <tbody data-page-node-id="rSTDasnnkCstuDFbazFdXm">
+      <tr data-page-node-id="7I8o6RFE47ddP8cBFZpiKu"><td class="k" data-page-node-id="KylHfXuKKsCRref7WB4wF4">土地出让 / 划拨</td><td class="dept" data-page-node-id="xoeJwjLd1HoHo91AhSvL8D">市规划和自然资源局</td><td class="doc" data-page-node-id="E5sKwMFmRdVJM4kEO1Ra2y">《国有建设用地使用权出让合同》/ 划拨决定书</td><td class="lawh" data-page-node-id="gVipXEPSQ6fO2Dijznz1uP">《土地管理法》；《城市房地产管理法》第二章<span class="law" data-page-node-id="0eATRBjzlcNSOWELL3oS4a">出让方式：招标、拍卖、挂牌；划拨限于法定范围</span></td></tr>
+      <tr data-page-node-id="uq421MqLoHfH76s1RzB60C"><td class="k" data-page-node-id="YxNru7UzS48sH3sJ9HJ5UJ">土地登记</td><td class="dept" data-page-node-id="9G9ljAi7A2T6heyyphkZmp">不动产登记中心</td><td class="doc" data-page-node-id="tC5YjsRqMb61hxeEuHjfzz">《不动产权证书》（土地）</td><td class="lawh" data-page-node-id="6Tqq3cUsTWKAgAC5I1ORAO">《不动产登记暂行条例》<span class="law" data-page-node-id="gkpv8pemw2XksWYPlJlegp">依申请登记；土地首次登记</span></td></tr>
+      <tr data-page-node-id="jkNspqvEJGAED0NrvjZbGf"><td class="k" data-page-node-id="JlAWCTEfskKg74eVKDlYy7">项目立项</td><td class="dept" data-page-node-id="CLFgRAh0HBkN7PFmKSK9FY">发展改革委 / 投资主管部门</td><td class="doc" data-page-node-id="OohoNtQyaXZQUVUJ8KiELO">投资项目备案证（或核准批复）</td><td class="lawh" data-page-node-id="5Clbbc8PhQZvLrWzuFpWD2">《企业投资项目核准和备案管理条例》<span class="law" data-page-node-id="n7KxDk6MSP70F9ZYEpbKMy">备案为主、核准为例外</span></td></tr>
+      <tr data-page-node-id="l3YEUhucJfWXYH0oVN3sAx"><td class="k" data-page-node-id="M9fDbFzV7T3H8ltOzSmvtQ">环境影响评价</td><td class="dept" data-page-node-id="o2xK20ZeZ1fGCZaE47IzwC">生态环境局</td><td class="doc" data-page-node-id="VwU5wbWvCvaH5h5swTtdNi">环评批复 / 备案回执</td><td class="lawh" data-page-node-id="DA4iKCle9S0mUvNkSa2r2W">《环境保护法》；《环境影响评价法》<span class="law" data-page-node-id="bJTvb5vwz90G5oJXczqKeZ">按分类管理名录确定报告书/报告表/登记表</span></td></tr>
+      <tr data-page-node-id="Gm5lfnpF1iWH7ccaUyvOdk"><td class="k" data-page-node-id="81eHL0Fvmpwe5H37nLCPIu">水土保持方案</td><td class="dept" data-page-node-id="rm9B848Ja6A2VImblzRn3J">水务局</td><td class="doc" data-page-node-id="ZLD3f9TuJSvlkId6mVcClA">水保方案批复</td><td class="lawh" data-page-node-id="4KFVkTqP47oCbOo2BvLFsy">《水土保持法》<span class="law" data-page-node-id="SgazBo6clvWG6ZH6IE0SSS">可能造成水土流失的生产建设项目须编报方案</span></td></tr>
+      <tr data-page-node-id="aDKSnkDnOLyr9b6oic1fyg"><td class="k" data-page-node-id="VpADCfUdUN79x7eFvuoycz">考古调查勘探</td><td class="dept" data-page-node-id="opSaHDndZtOTLDnztNtz65">文物主管部门</td><td class="doc" data-page-node-id="9jAMs4N4W1FhPxAFjtMCpA">考古勘探意见 / 文物保护许可</td><td class="lawh" data-page-node-id="zoIZm7TZI3pKZx0mSFQJ29">《文物保护法》<span class="law" data-page-node-id="EjA0lsHaywIubN2KOrQYpA">涉地下文物埋藏区的前置要求</span></td></tr>
+      <tr data-page-node-id="FNHFSATHglg1sZ3H12vvAz"><td class="k" data-page-node-id="8rPU9LHjnu27Sozb643uZL">房屋征收（如需）</td><td class="dept" data-page-node-id="UfHdUlfogQ7VoIACCjngeE">区县政府 / 房屋征收部门</td><td class="doc" data-page-node-id="OiNhtPnsTxAuh5gvO3rZY4">征收决定、补偿协议</td><td class="lawh" data-page-node-id="6w97fAdlfR0gQWIJZO0uXI">《国有土地上房屋征收与补偿条例》<span class="law" data-page-node-id="2xUCrNYXsZf49c5iosSMmF">征收补偿方案、评估与救济程序</span></td></tr>
+      <tr data-page-node-id="k7OmoLV99F18CIG2nuYbRy"><td class="k" data-page-node-id="tFQ6GGg1SK5KDxdejFd30b">地价 / 契税缴纳</td><td class="dept" data-page-node-id="e4NPZhMJTVIHyXLLhBfdFw">税务局</td><td class="doc" data-page-node-id="4g0p8bckFIjlASgmKSnyzp">契税完税凭证（土地环节）</td><td class="lawh" data-page-node-id="IGoBCJJgvfbRe3HMGtgFxK">《契税法》<span class="law" data-page-node-id="AOfSObKTKTVC55ERsfWym1">税率 3%–5%，各省定适用税率；广东 3%</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note" data-page-node-id="O3zkVFjoHwuuQABz9tUVrB">提示：出让合同会约定开工、竣工期限及投资强度，逾期未动工可能触发闲置土地认定。</div>
+</section>
+
+<section class="s2" id="s2" data-page-node-id="zAalxVUP17FHGytwpfAz8m">
+  <h2 data-page-node-id="RfX0pfpj3VOlDGN6gmyv25"><span class="idx" data-page-node-id="9Kb2yYVDjLoCVEuHjanm2g">2</span>规划报建<span class="tag" data-page-node-id="TyP3thEs8gJV1zXVR8hyAD">发证：规划和自然资源局 · 住建局 · 人防办</span></h2>
+  <table data-page-node-id="scxDoW0cYWUHvFgxJKCQMk">
+    <thead data-page-node-id="JHTM6yA0SySH7ZKDcbpKEF"><tr data-page-node-id="EYWyPjFt4ICrptQnTBBr29"><th style="width:18%" data-page-node-id="nEFru7WY3oKbKbnjYkR9ai">审批事项</th><th style="width:21%" data-page-node-id="Js7av0VDwExG1cymBgWiWN">监管部门</th><th style="width:28%" data-page-node-id="1J2y7iIFDcSKZx2fUu07GL">出具文书 / 证件</th><th data-page-node-id="eNEWSKbJGickBPr1o5n699">政策依据</th></tr></thead>
+    <tbody data-page-node-id="Ao8QJLjDG5a8jJTiEFnCj5">
+      <tr data-page-node-id="pF709zRXAU4eVvq1k7xPtp"><td class="k" data-page-node-id="HjYwBg9rWU5xoQTyZrJdLM">建设用地规划许可</td><td class="dept" data-page-node-id="5TAK6mhWz1OensCh0T72tm">规划和自然资源局</td><td class="doc" data-page-node-id="n7C8iGdsFUjkev7H24fcas">《建设用地规划许可证》</td><td class="lawh" data-page-node-id="c29oINcj3l8e9PfRP7Av1u">《城乡规划法》第三十八条<span class="law" data-page-node-id="yOqiNQ1oiFnmpPbJtOUw2K">以出让方式取得国有土地使用权的建设项目</span></td></tr>
+      <tr data-page-node-id="W4RIJMeqO3KCjRYVhlsIwY"><td class="k" data-page-node-id="scAlFxemHAQT7Lxt9lLFMr">修建性详细规划 / 总平面</td><td class="dept" data-page-node-id="WWQFVSv0oJdzboUuEAlCq0">规划和自然资源局</td><td class="doc" data-page-node-id="0LDeq5FzZHqN4BpBf7VG9V">方案批复、总平面审定图</td><td class="lawh" data-page-node-id="KsyEiWczLhiDYiU0AVxepE">《城乡规划法》第十九至二十一条<span class="law" data-page-node-id="w6ZR7z7LmE7BCCHwuhtp5t">修建性详细规划由城乡规划主管部门审定</span></td></tr>
+      <tr data-page-node-id="BE94wB4GE3nBPWckuT8vjS"><td class="k" data-page-node-id="t2iFs3bUMQdVmYHJV9Cm9y">建设工程规划许可</td><td class="dept" data-page-node-id="nhjnk98SSUuqUPxFWZH8Lp">规划和自然资源局</td><td class="doc" data-page-node-id="UMFGhBHPFgjQfT3FqtQRge">《建设工程规划许可证》</td><td class="lawh" data-page-node-id="2K8CJepFWnfDM6jZO5vyhN">《城乡规划法》第四十条<span class="law" data-page-node-id="TAAioQJNsmmnA2lehn97iY">施工许可的前置条件；竣工时据此做规划条件核实</span></td></tr>
+      <tr data-page-node-id="vWiBZGzAt7KRCENlrYuvJH"><td class="k" data-page-node-id="sC0qf1mOW9fkWp4xabqBs5">建筑方案 / 消防设计</td><td class="dept" data-page-node-id="yFPxqDC8e6NJEdBL89wEpu">住建局、消防救援机构</td><td class="doc" data-page-node-id="vVGZWFf2jLczIlmATwB1xM">消防设计审查意见书</td><td class="lawh" data-page-node-id="slImdB5X2PCYApyB5C1JFf">《消防法》第十一条<span class="law" data-page-node-id="3Yc8UYsHju0bLExB8tbrYy">特殊建设工程实行消防设计审查制度</span></td></tr>
+      <tr data-page-node-id="I2jSq5fUevGhyCxEY8ZIjU"><td class="k" data-page-node-id="bfB6e6gexxIVoZLje9kFnQ">人防工程报建</td><td class="dept" data-page-node-id="Ni0PfZobrE7z29EdFdBjum">人防办（发改口）</td><td class="doc" data-page-node-id="1ISUM0bjuKkv5nhqk4BVVU">人防工程建设审核意见 / 易地建设审批</td><td class="lawh" data-page-node-id="ptXa4gSl9CgNaLAXbGilz5">《人民防空法》第二十二至二十三条<span class="law" data-page-node-id="NFs2R4CEnzRfjDkFUb2rIA">城市新建民用建筑须修建防空地下室；符合条件可易地建设</span></td></tr>
+      <tr data-page-node-id="6I8CDtdblToqw1HwfjDji8"><td class="k" data-page-node-id="DOBbUHMP5IASxa0oQ2HYNH">园林绿化 / 市政管线</td><td class="dept" data-page-node-id="YOdsAFjP1Hm6tNe8HcLgCt">城管局、园林局</td><td class="doc" data-page-node-id="HQC8Wz6rIDA1gIW6BfBxt3">绿化方案审批、市政接口批复</td><td class="lawh" data-page-node-id="7PpD0lEHkHioPNcmf0IoUo">《城市绿化条例》；地方市政管理规定<span class="law" data-page-node-id="wuCycp6WRLeuSw49idfKSM">绿化率指标与市政管线接驳审批</span></td></tr>
+      <tr data-page-node-id="MXpSBKQH8NeOLCnql9mFAM"><td class="k" data-page-node-id="WMyucqDBOGONpGmIAeKyON">地名命名</td><td class="dept" data-page-node-id="U6Z2sWk6bQfUMhNwn7BZBT">民政局</td><td class="doc" data-page-node-id="2VgmK0G1BX9iDopNaD207Y">地名命名批复</td><td class="lawh" data-page-node-id="AdR1sNH07yAnHbKqAZa4KQ">《地名管理条例》<span class="law" data-page-node-id="2JIZOy72VvK0g3JflIY2DG">新建住宅区、建筑物命名须经批准</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note" data-page-node-id="eoN7x6hbPyEjWOlBJCnnUT">「两证」即《建设用地规划许可证》+《建设工程规划许可证》，是施工许可的前置条件。</div>
+</section>
+
+<section class="s3" id="s3" data-page-node-id="DIzGSC3DyLZT6KYlv3NNoZ">
+  <h2 data-page-node-id="AyT8DYd70KDX4nmLQJpXob"><span class="idx" data-page-node-id="FspUqOT9mM4aKqmUHC3z51">3</span>施工建设<span class="tag" data-page-node-id="uCGZ1zy6GR0PKEwGwQVVKb">发证：住建局 · 质安监站 · 人社局</span></h2>
+  <table data-page-node-id="dDC3LrwdpCUYOkMyzRD5Mt">
+    <thead data-page-node-id="QhUjtgaR9cWd1uo5F9RJVS"><tr data-page-node-id="h7HI5eHMT3mh5HsFVoJ9XG"><th style="width:18%" data-page-node-id="y68e7DgSXlC65veyCKtBOR">审批事项</th><th style="width:21%" data-page-node-id="tNOQqJXYhNa2Ltww6y5HX4">监管部门</th><th style="width:28%" data-page-node-id="ZfunPR63UTIjcbYizeLXaM">出具文书 / 证件</th><th data-page-node-id="UocMDU6DQBoIKp9rUCdYK6">政策依据</th></tr></thead>
+    <tbody data-page-node-id="D3Qen5NObye7sVp2tWvMu0">
+      <tr data-page-node-id="HCRnHxyO4AqAKgS1o69fSb"><td class="k" data-page-node-id="IGCRrJg4TjI1DnD91LG2B6">施工图设计文件审查</td><td class="dept" data-page-node-id="R9yADc5w9AfmZSbzahZcyn">施工图审查机构（住建局监管）</td><td class="doc" data-page-node-id="fWotWY1ftBoyQRjaUXL7Lk">《施工图设计文件审查合格书》</td><td class="lawh" data-page-node-id="LTNfA3BFWXxD2xLlepCJaD">《房屋建筑和市政基础设施工程施工图设计文件审查管理办法》<span class="law" data-page-node-id="886MfXWep1wwBYeEmKUldf">审查合格书是施工许可前置条件</span></td></tr>
+      <tr data-page-node-id="wI13CzcOQ6bsqf89uyUVw8"><td class="k" data-page-node-id="t4Y9jWJI04Mi7fA71PSNPe">施工许可</td><td class="dept" data-page-node-id="ovv3KDs8AHnC7aQMEXM4vH">住建局</td><td class="doc" data-page-node-id="uBIAiL7026yJWsxXypr76b">《建筑工程施工许可证》</td><td class="lawh" data-page-node-id="L2REkn9VpBPjdFJFtdGSnD">《建筑法》第七条；《建筑工程施工许可管理办法》<span class="law" data-page-node-id="vKraSIAHdHF01cyHeNwN6X">收到申请之日起 7 日内颁发；领证后 3 个月内开工，可延期两次</span></td></tr>
+      <tr data-page-node-id="5bTStdqWRr8GaUVlMJeksh"><td class="k" data-page-node-id="6VaUsc0FkLIn1uLcpqc5P5">招投标监管</td><td class="dept" data-page-node-id="eAadbsARDjB1CKhcghAg0T">住建局（招标办）</td><td class="doc" data-page-node-id="XY6etSU4aK7PukmOvwaJAX">中标通知书、招投标情况备案</td><td class="lawh" data-page-node-id="4xngjHaVDWS29dF8pnILKV">《招标投标法》；《招标投标法实施条例》<span class="law" data-page-node-id="KJ8W6vzqivWlUwN1HqBWK3">必须招标项目的范围与规模标准</span></td></tr>
+      <tr data-page-node-id="wkdLmOH4zXLi7Ls1HaS4qb"><td class="k" data-page-node-id="gn0RsPdD5h5PkTNrqb6XNu">质量安全监督登记</td><td class="dept" data-page-node-id="DRfjh8csDrSghvbi9LXH2r">建设工程质量安全监督站</td><td class="doc" data-page-node-id="ZjADzXW3BP55Mo0vvdCF6w">质量监督登记、安全监督登记</td><td class="lawh" data-page-node-id="ER0j5XiWzKuMcC0qKsFvVd">《建设工程质量管理条例》；《建设工程安全生产管理条例》<span class="law" data-page-node-id="26yqr8cgBCNsD6IWu7I0Ay">建设、勘察、设计、施工、监理五方主体责任</span></td></tr>
+      <tr data-page-node-id="ytkh2pS2g7NdyTML0SNJZg"><td class="k" data-page-node-id="KicxLsxEEOZDhWyloSDJmk">监理合同备案</td><td class="dept" data-page-node-id="uq24kMaBuQzuqxNbcpfGvb">住建局</td><td class="doc" data-page-node-id="pfjV9SKFfU5vHKTGH103iG">监理合同备案表</td><td class="lawh" data-page-node-id="YzgwHBIA6yf3UxChlu9GwZ">《建筑法》第三十条；《建设工程监理范围和规模标准规定》<span class="law" data-page-node-id="SadO6pQkIyBiZkZZ2C6Hkr">必须实行监理的工程范围</span></td></tr>
+      <tr data-page-node-id="CRdZBGF7mz0yTbqegDdHaP"><td class="k" data-page-node-id="0kgnFZ2CrLWmI3DiMdoUI9">农民工工资保证金</td><td class="dept" data-page-node-id="o0294GRtpgP0msdwnpzT29">人社局、住建局</td><td class="doc" data-page-node-id="3UOvoWeDc0H4zgqe33s5Xh">工资保证金缴存证明</td><td class="lawh" data-page-node-id="588UAbF4RF1TGsg8USnnjp">《保障农民工工资支付条例》<span class="law" data-page-node-id="9aWsPFEwm4aRQZ1bT8RwjC">工资保证金、专用账户、实名制管理</span></td></tr>
+      <tr data-page-node-id="VONHmrXvwOgtsa0LEGouLc"><td class="k" data-page-node-id="sQHYANwTeYal7v3jNBj0SC">城市基础设施配套费</td><td class="dept" data-page-node-id="FpohPhhLHxfdOyx0Hv0fOy">财政局 / 住建局</td><td class="doc" data-page-node-id="JrFXOcude6phWjctqWlCnt">配套费缴款凭证</td><td class="lawh" data-page-node-id="j3KAnPP4RWqEiB8rkVYRzn">地方城市基础设施配套费征收管理办法<span class="law" data-page-node-id="9CZaBAG3Vr1X4MewlEAmCf">按建筑面积计征，各地标准不同</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note" data-page-node-id="SwZmVDaaQ0YJIrsAEt2FFP">施工许可需前置：用地批准、建设工程规划许可证、施工图审查合格书、施工与监理合同、资金落实证明等。</div>
+</section>
+
+<section class="s4" id="s4" data-page-node-id="zFu0CMqifk1TtDABCjProC">
+  <h2 data-page-node-id="KhVrD0IJumZiqmWNEfMLvP"><span class="idx" data-page-node-id="5SZTX7XSn19Kij1m5e9C4o">4</span>预售与销售<span class="tag" data-page-node-id="v26WgWQkrmJu2lv4A14Vkv">发证：住建局 · 房屋交易中心 · 税务局</span></h2>
+  <table data-page-node-id="PznDFtE6de50TcOfuivLNW">
+    <thead data-page-node-id="E69scJkmbvqb2QD2fGRkCi"><tr data-page-node-id="w0PhYSivaHkT9ok0ToDNLf"><th style="width:18%" data-page-node-id="2UHL7HkZJ5NLLUWCELE0EH">审批事项</th><th style="width:21%" data-page-node-id="iwm1YdvHqWNGFCglZW73a4">监管部门</th><th style="width:28%" data-page-node-id="Dk0qAhOPz8OxHw5h4Lrk9P">出具文书 / 证件</th><th data-page-node-id="VCbmG5iQ8OGO8xwlDVJd5N">政策依据</th></tr></thead>
+    <tbody data-page-node-id="yVEu8OMlJInv9pdaj25R26">
+      <tr data-page-node-id="UvuBHiWEKhimpHvJyAmhAM"><td class="k" data-page-node-id="5pRcBGRymunCtgIBH2Zr5Z">商品房预售许可</td><td class="dept" data-page-node-id="OPw9byb01UFjSpXmRQWHKj">住建局（房屋管理局）</td><td class="doc" data-page-node-id="99qCkx3o4cP5EDq2270Jq7">《商品房预售许可证》</td><td class="lawh" data-page-node-id="aRifXz57gHyMCNBDn1jHia">《城市房地产管理法》第四十五条；《城市商品房预售管理办法》<span class="law" data-page-node-id="LdiDP4HxFPqd4hfkytBwLO">出让金已付清、取得土地使用权证、持有工规证、投入资金达总投资 25% 以上</span></td></tr>
+      <tr data-page-node-id="MWA0v3afKQewRcrUTlVoG5"><td class="k" data-page-node-id="mWF8wHNw8OHNskqsLxlS48">预售价格备案</td><td class="dept" data-page-node-id="UUEj8geGxOaDBZfYjTqMA7">住建局、发改委（价格）</td><td class="doc" data-page-node-id="FB3oY5jHIHbbRLbWTI3J6p">一房一价备案表</td><td class="lawh" data-page-node-id="PDPyxMoyyjmUfY9SAPa6y2">《商品房销售明码标价规定》<span class="law" data-page-node-id="GX0o6qLwLNgMxUMJ54j4Ea">一房一价、明码标价，实际成交价不得高于备案价</span></td></tr>
+      <tr data-page-node-id="fXa9ovpZzQhRrGscrfIDat"><td class="k" data-page-node-id="qXaQoNfADgXUxcHL78uA9t">预售资金监管</td><td class="dept" data-page-node-id="IGf5htyKx4avz0nCB5JjEJ">住建局 + 监管银行</td><td class="doc" data-page-node-id="OVrNIBpOZEOGXIoGxCGRvb">预售资金监管协议、专用账户</td><td class="lawh" data-page-node-id="UN9vBZ7HhGycoIMtNkpOEj">地方商品房预售资金监管办法<span class="law" data-page-node-id="rVIV3dH8MXcUWCIpnvngd2">按工程进度节点拨付，专款专用</span></td></tr>
+      <tr data-page-node-id="ySlCDF1xUmo2IRnX7TD4RG"><td class="k" data-page-node-id="EMLZSuDcbHdjJF6KYMk3Dt">网签备案</td><td class="dept" data-page-node-id="YkEq1kGMQPBFXXkhLAuecn">房屋交易管理中心</td><td class="doc" data-page-node-id="BYMRLrp7BSFrbmpKsdAWFT">《商品房买卖合同》网签备案</td><td class="lawh" data-page-node-id="Wz5qPtifaVErJV5X9uDsIh">《商品房销售管理办法》；《城市商品房预售管理办法》第十条<span class="law" data-page-node-id="gnjm1zlEF0lrlyyiSQUYtX">签订合同后 30 日内备案</span></td></tr>
+      <tr data-page-node-id="Elbs91IEU4rZa8PQFsQZk9"><td class="k" data-page-node-id="oHL79PlUHh8nXbv7oS7Anq">广告 / 销售公示</td><td class="dept" data-page-node-id="A4tRrjhRBAfr6fCkDSyNDe">市场监管局</td><td class="doc" data-page-node-id="V3r6vYbMov5HihPAKJ0Yvo">广告合规审查意见</td><td class="lawh" data-page-node-id="GYpx3Eudkm0MtkPQpROfFU">《广告法》；《房地产广告发布规定》<span class="law" data-page-node-id="coeSWNjEn0Kyij5BGPchQp">禁止承诺升学、投资回报、升值等误导性内容</span></td></tr>
+      <tr data-page-node-id="v11AzBgAtAtSkbXvuqoyKa"><td class="k" data-page-node-id="mP6cdPQjq8AYoCh89oUfLX">土地增值税预征等</td><td class="dept" data-page-node-id="q1GthxVnBAlbgeK6gVCe5R">税务局</td><td class="doc" data-page-node-id="RObSzrGfO42DhhFh8eCvG4">增值税、土地增值税预缴凭证</td><td class="lawh" data-page-node-id="A1DGkfvKP9XHyNQ35vrI3m">《土地增值税暂行条例实施细则》；国家税务总局预征规定<span class="law" data-page-node-id="9HkuJNPEHFss6xJznylgc1">按预征率预缴，项目竣工清算</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note warn" data-page-node-id="UDFw7GvIXQSVHkBJfmWkHr">预售条件（以《城市商品房预售管理办法》为基准）：已交付全部土地使用权出让金、取得土地使用权证书、持有建设工程规划许可证、投入开发建设资金达总投资 25% 以上且确定施工进度与竣工交付日期。</div>
+</section>
+
+<section class="s5" id="s5" data-page-node-id="59AnUcHHtcEGgUNgw48w2G">
+  <h2 data-page-node-id="utR6IgBPoIaJNGOZZtTYF9"><span class="idx" data-page-node-id="4LeF430OOPYuAeuy9C5a5q">5</span>竣工验收与交付办证<span class="tag" data-page-node-id="URILhOXDJsEEm8Lpdbhi4W">发证：住建局牵头联合验收 · 不动产登记中心</span></h2>
+  <table data-page-node-id="2MiDLYT4ypzBCnj9X0PeqS">
+    <thead data-page-node-id="YJRvmHrde7J2o1CGUPgHfS"><tr data-page-node-id="LGc3doX7L27bUjIn5LZuLa"><th style="width:18%" data-page-node-id="F6UtxZffbiQCHA1NbbOp3o">审批事项</th><th style="width:21%" data-page-node-id="FtKB1M4bD6UzWSXcHwmnSX">监管部门</th><th style="width:28%" data-page-node-id="sfTToCkGXlhjRoPe3em3bz">出具文书 / 证件</th><th data-page-node-id="jaBwDN0qdMCGOJG3KA1TBM">政策依据</th></tr></thead>
+    <tbody data-page-node-id="dxDSZnTHGNQD0EDrptsrbM">
+      <tr data-page-node-id="te47ZIFEy8qMbFUkVEpDuJ"><td class="k" data-page-node-id="ks6jI6tzfbFQDUUnc8HOMA">规划条件核实</td><td class="dept" data-page-node-id="hbC8BDD3plFINklhXzzHb4">规划和自然资源局</td><td class="doc" data-page-node-id="eoRcdsFen4WwEJO7gfVQ3X">建设工程竣工规划条件核实意见</td><td class="lawh" data-page-node-id="3bQBC3jOaCO3ymBXjGXXUr">《城乡规划法》第四十五条<span class="law" data-page-node-id="a1PfSGLwtOwIuvcFsRlAtc">未经核实或核实不合格的，不得组织竣工验收</span></td></tr>
+      <tr data-page-node-id="Nyf1bfnQDwkk4c7ZQkTbqc"><td class="k" data-page-node-id="BaVjPGgPv3ye5NrPq9SisI">消防验收 / 备案</td><td class="dept" data-page-node-id="VPA3UCTVdOZOXAxGTAogsA">消防救援机构、住建局</td><td class="doc" data-page-node-id="GV0tdDNfyw2HfqNvOkY1eC">建设工程消防验收意见书</td><td class="lawh" data-page-node-id="teGNU8kDEUDHbkHh3VgCNH">《消防法》第十三条<span class="law" data-page-node-id="9pAkvb0MAItZst4tBXXJtS">特殊建设工程实行验收，其他工程实行备案抽查</span></td></tr>
+      <tr data-page-node-id="NR3C0dl1byI4KqlO1HUADn"><td class="k" data-page-node-id="MA0coywV7lzm3GVXVoJ3V5">人防工程验收</td><td class="dept" data-page-node-id="fTi9R4I6HYmHZwQl16Vx1I">人防办</td><td class="doc" data-page-node-id="d6KedCsY6hl6wgEX0VSmXh">人防工程竣工验收备案</td><td class="lawh" data-page-node-id="umRi8f0XDSIgKXm3bUBnrg">《人民防空法》；人防工程竣工验收管理规定<span class="law" data-page-node-id="ASYTkB9HSq5ddiJoBMqpF3">人防工程须经验收合格方可交付使用</span></td></tr>
+      <tr data-page-node-id="UIO8f2pDbah9tIjbrvN4K4"><td class="k" data-page-node-id="UKPKSBlw1m0fAwDtvkgUem">环保验收</td><td class="dept" data-page-node-id="ZkEnYdMGigB8coPpTYztgm">生态环境局</td><td class="doc" data-page-node-id="LS7P1L7IcNb8G4SvJVFM1o">环保设施验收备案</td><td class="lawh" data-page-node-id="0sFHf92anK80CXiHCU4gpa">《建设项目环境保护管理条例》第十七条<span class="law" data-page-node-id="lx8kGBWZ4iGyIiSseEYRHq">环保设施「三同时」；验收报告公示后备案</span></td></tr>
+      <tr data-page-node-id="VY65BqCuBSLTo8Nhk2alfD"><td class="k" data-page-node-id="gsmdQy26Q9cKI40CbQfF7O">联合验收 / 竣工备案</td><td class="dept" data-page-node-id="bvF73mPJ0hq02IAulZxiuR">住建局牵头多部门</td><td class="doc" data-page-node-id="DDSfjB0q8osG5nBiDYmpzj">《房屋建筑工程竣工验收备案表》</td><td class="lawh" data-page-node-id="TM0BU2tfpp37BzO39fAkjN">《建设工程质量管理条例》第四十九条；竣工验收备案管理办法<span class="law" data-page-node-id="q4w2bzmTuv1XVBi8uEoWWT">验收合格之日起 15 日内备案</span></td></tr>
+      <tr data-page-node-id="tu93QwoqQyNAsRGk18zjZc"><td class="k" data-page-node-id="0Q6LCzyLZliiZpuDe0vPHR">不动产首次登记</td><td class="dept" data-page-node-id="6pbepKnH5a1w4UaHrM8vix">不动产登记中心</td><td class="doc" data-page-node-id="wNLVAvAEboqG0msGDUDNPG">不动产权证（初始登记）</td><td class="lawh" data-page-node-id="CPrs0oAluWuJvrrIUtTOT2">《不动产登记暂行条例》；《不动产登记暂行条例实施细则》<span class="law" data-page-node-id="v9BdPed0Xme6lblZcl5EcI">竣工验收备案是首次登记的前置条件</span></td></tr>
+      <tr data-page-node-id="7wKNqEkzn6PmstrKOwCC0U"><td class="k" data-page-node-id="xcWRuNNCOmydLd49HQMVFO">分户转移登记</td><td class="dept" data-page-node-id="9IeuilLkiBTOCBo4EzxBeG">不动产登记中心</td><td class="doc" data-page-node-id="jd32OsDDDfERcxNG7wmFcz">分户《不动产权证书》</td><td class="lawh" data-page-node-id="MuyzfpyAvAHocQTK5amFJf">《不动产登记暂行条例》第十四条<span class="law" data-page-node-id="SrJzJYuig9G5kJgrYoCCFx">买卖双方共同申请转移登记</span></td></tr>
+      <tr data-page-node-id="DV0TEzszO2ttmWGvDtJ7wa"><td class="k" data-page-node-id="gQg8fAShBpq5elJvuZuMvD">交付使用</td><td class="dept" data-page-node-id="gWQRcA7QGnJSlKeGoNEOhg">住建局监管</td><td class="doc" data-page-node-id="NLydDT8FxOPf8huMxvzZlm">住宅质量保证书、住宅使用说明书、竣工验收备案表（「两书一表」）</td><td class="lawh" data-page-node-id="b280tnrtoujqmANGbApnEt">《城市房地产开发经营管理条例》第三十一条<span class="law" data-page-node-id="qBjOKrFrm422uzZU6gAe0K">未提供「两书」的属违规交房</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note" data-page-node-id="2EUSkn74MOBjuGv6u1PwEG">交付时须向购房人提供「两书一表」，缺失属违规交房，是常见投诉与诉讼事由。</div>
+</section>
+
+<section id="s6" data-page-node-id="pO5PSriKK9cRzv5PV0EBs3">
+  <h2 data-page-node-id="UqmOrBBAaSLIGDlQEDFzSp"><span class="idx" data-page-node-id="1p8D7DjxLimVm3OAC2t0Ip">6</span>需要缴纳的规费与税费<span class="tag" data-page-node-id="ANqFBkiB3Ze9fLQtCIMT41">征收机关核定为准 · 税率为基准值</span></h2>
+  <table data-page-node-id="hjPPeIrww0lCLrKB4LW0c0">
+    <thead data-page-node-id="E8o4i05jPaLni2FuOLKmPp"><tr data-page-node-id="f0cC21rJfzA74ZoV2PWLjW"><th style="width:20%" data-page-node-id="1s6JvjzdwXGIy2coxMFcxs">费种 / 税种</th><th style="width:12%" data-page-node-id="BjUS0nDkmi9irfAX12OEDA">所属环节</th><th style="width:38%" data-page-node-id="mDjFNkniDYN0REJLSlQLiS">计税（费）依据与口径</th><th data-page-node-id="w41s9UDOKJyDSqa9llhYuk">征收机关</th></tr></thead>
+    <tbody data-page-node-id="uhZTcjvm7GaM4c7FpeCnA8">
+      <tr data-page-node-id="Zqz4AryrbBPTHD2MYyl9r5"><td class="k" data-page-node-id="qMU14fZm6FKWc3JPXOIG2Z">土地出让金</td><td data-page-node-id="mNPbSYLC72l1neSAxJR5sU">土地</td><td data-page-node-id="fUq8EEuPVfvHp9wxeGEDD2">成交价或基准地价，按出让合同分期缴</td><td class="dept" data-page-node-id="KnIE1CRLWHPKljlMY2gXLE">规划和自然资源局 / 财政</td></tr>
+      <tr data-page-node-id="XFfgaH6picLeotfKmu1kqZ"><td class="k" data-page-node-id="Zhi4ESzh1OYYzKFEVBV4z4">契税</td><td data-page-node-id="BHBgko4HzTSzxcN79HG0A3">土地</td><td data-page-node-id="HRBDSXHFVDKq152SUR1AAB">土地使用权出让成交价，税率 3%–5%<span class="flag" data-page-node-id="B78whngDyyVMFyEcxeQw62">广东 3%</span><span class="law" data-page-node-id="qDZ9CdCvqKIaQHNNNUGLl6">依据：《契税法》第一条、第三条</span></td><td class="dept" data-page-node-id="ZEpL3I8PXMEFYCYRMV1K24">税务局</td></tr>
+      <tr data-page-node-id="9rZbUFJjPHcTCkIvJUfjtT"><td class="k" data-page-node-id="OVowANCZChxSSvcf876rKE">印花税（产权转移书据）</td><td data-page-node-id="n0bq8au6Teh81fipaz86sH">土地</td><td data-page-node-id="rp7bFj1XxVUqjT7jW0ulh7">合同金额 0.05%<span class="law" data-page-node-id="ctlJPd5YaC4Opif8SdvntO">依据：《印花税法》税目税率表</span></td><td class="dept" data-page-node-id="yQa9IlTSoDatPfx2LRa1Fg">税务局</td></tr>
+      <tr data-page-node-id="JzgyF4mx4s42Of2m4zI8xn"><td class="k" data-page-node-id="zHIeTEzecZFNFjx6ldjtWq">耕地占用税</td><td data-page-node-id="K3Ivfo93yHGWWScuwWkkHw">土地</td><td data-page-node-id="is58YU5769Hoj6F7dKAr5u">占用耕地按面积定额征收（涉农用地转用）</td><td class="dept" data-page-node-id="gO08F4FnYH17d3OvXD9lCF">税务局</td></tr>
+      <tr data-page-node-id="TnxHIROAtwaL7YouEsT83X"><td class="k" data-page-node-id="e7YNrLCvvI9ItcegwUZ6oN">土地闲置费</td><td data-page-node-id="xBX3RwHOJdCRbvDqAKXlV9">土地</td><td data-page-node-id="FxEUzczcRGwhZDBlTM6SkU">闲置满 1 年，按出让金 20% 以下征收<span class="flag" data-page-node-id="JZBCVL7he6DbsnnBQ9D5jx">风险项</span><span class="law" data-page-node-id="VCYB5wstUkrYrc5K0YX4XE">依据：《闲置土地处置办法》第十四条</span></td><td class="dept" data-page-node-id="JYhWhQbLAFNCiGTmkeRs7Y">规划和自然资源局</td></tr>
+      <tr data-page-node-id="zRUOCcYcBrsFLX7AIObEBk"><td class="k" data-page-node-id="hsZoxznRv2XizVDuwtAZvx">城市基础设施配套费</td><td data-page-node-id="ByBKdFUhzGXwB4BJ958DDK">报建</td><td data-page-node-id="ce1SZzPTHWzyGWV35CVggA">按建筑面积计征，各地标准不同（广州按区域分类）<span class="law" data-page-node-id="PGSkEDvhzPTZ8w5KMW9Ntj">依据：地方配套费征收管理办法</span></td><td class="dept" data-page-node-id="lGnWRpet0vtIBeKaYUMKK9">财政局 / 住建局</td></tr>
+      <tr data-page-node-id="wm598hShg9WNBkMu1Isq8I"><td class="k" data-page-node-id="MplJ8l91ujVEseQC7SGrjC">人防易地建设费</td><td data-page-node-id="F2DFXhg8DvwSLy9IeGmjts">报建</td><td data-page-node-id="K8XEroQ5aVkzBTT1wGxjyC">应建未建人防工程时，按应建面积计征<span class="law" data-page-node-id="NUVNJZvdHuEzT5MscEWFrN">依据：《人民防空法》；地方人防条例</span></td><td class="dept" data-page-node-id="cXZOXlWyIYQOlwC1oVaM0X">人防办</td></tr>
+      <tr data-page-node-id="tvivwoBH3UKfyTXrNKymdx"><td class="k" data-page-node-id="eO6xqmNsAyqZl5bpoAxbvh">农民工工资保证金</td><td data-page-node-id="fSbE3QhY7OunbaWox2kqbw">施工</td><td data-page-node-id="VkSlOThpIkO1l6PGAdxF0x">按工程合同额一定比例缴存，可差异化减免<span class="law" data-page-node-id="mYlBftGeLAeYvAHRZ5SxaX">依据：《保障农民工工资支付条例》第三十二条</span></td><td class="dept" data-page-node-id="ag6TaVbvQIz90PExsX15uj">人社局 / 住建局</td></tr>
+      <tr data-page-node-id="HZ1q9tDtYpbfy47W7YnrLN"><td class="k" data-page-node-id="oHKkPbDfTBopxBW26nqtDa">工程质量保证金</td><td data-page-node-id="Mx4PBhQos6P4fhtRsBWYpK">施工</td><td data-page-node-id="ixfiKMwy4rVkcXJ1nsdjkM">工程价款结算总额 3% 预留（发包方扣留）<span class="law" data-page-node-id="2tcgMWp6cBn0jCt3iVfyTP">依据：《建设工程质量保证金管理办法》</span></td><td class="dept" data-page-node-id="2amdktLMuid8p85E7wOzr5">建设单位扣留</td></tr>
+      <tr data-page-node-id="5S1DG5TDuIDZwac1FyGFha"><td class="k" data-page-node-id="d4zM7aTBc95glH3uPN4Yyi">建筑安装工程一切险</td><td data-page-node-id="zVkDQlsjUiiHCdwWgCkOnc">施工</td><td data-page-node-id="HIlkAfezqtgv9FslVMrSUO">按工程造价投保，商业险非法定</td><td class="dept" data-page-node-id="v6MXeTmHwQSxhjZjBV7LXy">保险公司</td></tr>
+      <tr data-page-node-id="DeG1Do3gAp9dzmBS2kI2MK"><td class="k" data-page-node-id="DCjtww8GAykiz6RDf6Uyqi">排污权 / 扬尘治理费</td><td data-page-node-id="SlEzMaJuZwwe9en6PcMWlA">施工</td><td data-page-node-id="HXr3xnoHNWzFYdTLvBnHCU">施工期环保要求，部分城市收取</td><td class="dept" data-page-node-id="KZszaDRlyxtvcwi5EioFB9">生态环境局</td></tr>
+      <tr data-page-node-id="RgAokYv9pdcCBbJh8NQgVw"><td class="k" data-page-node-id="F0cjRkwjpTL5QAbwEPBtJk">增值税</td><td data-page-node-id="hn66PXcTsjiThh45hUJgFt">销售</td><td data-page-node-id="Akc23hzoEUqlZ7HpUoFSWQ">销售不动产一般计税 9%；预收款按 3% 预缴<span class="law" data-page-node-id="GVTSZFCuA5kszAMwWWSq8c">依据：《营业税改征增值税试点实施办法》</span></td><td class="dept" data-page-node-id="SttPcuLrfDJl1EzTrpvCYz">税务局</td></tr>
+      <tr data-page-node-id="fJatc0WY7BsmWlMKo4MA1U"><td class="k" data-page-node-id="EfxJhf4d3zYJhp2jt6xLVy">土地增值税</td><td data-page-node-id="A5FM30OcI9tcDzU8lHqnOT">销售</td><td data-page-node-id="DiwI6QydAzK7POAVYLn8TV">四级超率累进 30%–60%；预售按预征率预缴<span class="law" data-page-node-id="aQOZAudazwJMHm5ESGqrkk">依据：《土地增值税暂行条例》第七条</span></td><td class="dept" data-page-node-id="N9pznhCBGaFjJAsflK19Ht">税务局</td></tr>
+      <tr data-page-node-id="V0k9ZqQxlRXsAwlZaiyVCG"><td class="k" data-page-node-id="dMhPXhUVZ6D7OLUGywZGRv">企业所得税</td><td data-page-node-id="gRVeKoGgHy7MtxeCn8OiKh">销售</td><td data-page-node-id="HDudq3JiZbeU38uVPeANZf">开发项目所得 25%；完工年度按计税毛利率调整<span class="law" data-page-node-id="eV7kbBg8zYDKIsgLeMCU4g">依据：《房地产开发经营业务企业所得税处理办法》</span></td><td class="dept" data-page-node-id="HN5IYJpF0dgEr7hwbb1O0p">税务局</td></tr>
+      <tr data-page-node-id="1GEtrOtO5Ddl9T13DdaDn6"><td class="k" data-page-node-id="48Kp8fmLNDKACYpInYLNRk">印花税（买卖合同）</td><td data-page-node-id="gEgedgMj2uTxbuAOaCVv5X">销售</td><td data-page-node-id="D3nQ8NNVNCb7oy2yB9zVeT">合同金额 0.05%</td><td class="dept" data-page-node-id="4KUYcpJYoRlWjHRjGsrhHK">税务局</td></tr>
+      <tr data-page-node-id="DbyYrchL6rB2iJwFc9Px5U"><td class="k" data-page-node-id="pwNAcFzxpmqIwefuuDrqMC">房产税</td><td data-page-node-id="4lUscAgpargnCuuUm9C909">持有</td><td data-page-node-id="CAIpQ4W7szegqaH0Bsw03j">自持按房产原值减除 30% 后 1.2%，或从租 12%<span class="law" data-page-node-id="qfvcAYJFz0aJPJs7MHLkMB">依据：《房产税暂行条例》第三条、第四条</span></td><td class="dept" data-page-node-id="Ra1CF8Epuxau4NrXX0nl9q">税务局</td></tr>
+      <tr data-page-node-id="P80eFSYoesCkhyUdD0iOt0"><td class="k" data-page-node-id="pczXRZnTYgfMaW24BfTxGB">城镇土地使用税</td><td data-page-node-id="LzSCfLe7KaQ3f86b5RFtb7">持有</td><td data-page-node-id="yFUHIDwve1qZii8LMwNBup">按占地面积定额，各地分级（元/㎡·年）<span class="law" data-page-node-id="sjUwQFMhzghDMByIf8tCDZ">依据：《城镇土地使用税暂行条例》</span></td><td class="dept" data-page-node-id="FL73K29FSEW5SRkF25tSVU">税务局</td></tr>
+      <tr data-page-node-id="GMrTQVYRZhIFV0iAm2cUTA"><td class="k" data-page-node-id="1SLOI19zPHyOg4XOAxFBah">城建税及附加</td><td data-page-node-id="Z4BGXBAg4R2x6iiPB3LyTC">全程</td><td data-page-node-id="1jxJbZMmgEEHCV5yYG2rVp">以实缴增值税为基数：市区 7% + 教育费附加 3% + 地方教育附加 2%<span class="law" data-page-node-id="4PVgBaEWNdgtRrfJlK7g3z">依据：《城市维护建设税法》；教育费附加规定</span></td><td class="dept" data-page-node-id="m0oAbWSE7WQQ1l1CIIeX5t">税务局</td></tr>
+      <tr data-page-node-id="ATs0OxDE1UL0YMGR1FHw7u"><td class="k" data-page-node-id="1Mcz5dZYKfTaqJI4vKpkA9">不动产权属登记费</td><td data-page-node-id="TdoCakvyx7q0wyzSJ69U8k">办证</td><td data-page-node-id="reGwkGNTdODB5lfVE7BB9Z">住宅 80 元/件，非住宅 550 元/件<span class="law" data-page-node-id="MArHvMaKTnduKEWO5SjEbn">依据：《不动产登记暂行条例实施细则》</span></td><td class="dept" data-page-node-id="mJPCKeX1F1DzrRChGH34UD">不动产登记中心</td></tr>
+    </tbody>
+  </table>
+  <div class="note warn" data-page-node-id="L4Pal6WMShRQo7yYAuXkBC">税率均为现行基准值，仅作梳理参考。具体适用税率、减免优惠、预征率以主管税务机关核定及最新政策为准，涉及金额务必核对原文。</div>
+</section>
+
+<section id="s7" data-page-node-id="3iDx9CEJhZcbFi5zsKQKH1">
+  <h2 data-page-node-id="KbFXcSyIqISGcdEFcLdHNO"><span class="idx" data-page-node-id="KEzLbyyF9hCQIRjg2qIvSG">7</span>需要的资质与执业资格<span class="tag" data-page-node-id="DCWKpKxpogx0A2owqPMfAu">住建部 / 省住建厅 · 住建局</span></h2>
+  <table data-page-node-id="BjpEqKchLGKc7OH7byRFZv">
+    <thead data-page-node-id="CqCfhF2ljmD0Lq30CEjgnl"><tr data-page-node-id="a8A58EPKH1m2aeXyeuji9x"><th style="width:22%" data-page-node-id="8q8FBJpZ2eA7QhPMMVA2rH">资质 / 资格</th><th style="width:16%" data-page-node-id="h9UDjAbpDgd1iqefvo12yq">类别</th><th style="width:32%" data-page-node-id="dwCZf9A70sF6gr8o2fvfNX">等级与核心条件</th><th data-page-node-id="aCqzKelPMsiKK41yBvvhsG">发证 / 注册机关</th></tr></thead>
+    <tbody data-page-node-id="B4LAd4DnVyJaCbr9wUDhW6">
+      <tr data-page-node-id="0nIzUe3F8adEFejw9NfQiw"><td class="k" data-page-node-id="SAZ2La3jZLm5iupFN3vvhV">房地产开发企业资质 · 一级</td><td data-page-node-id="GuJEyVQqgwOgZkAWofGFtw">企业</td><td data-page-node-id="bjsuUKr6ITi0CMcWWlHxIt">注册资本 ≥ 5000 万元；开发经历 5 年以上；有职称专业人员 ≥ 40 人</td><td class="dept" data-page-node-id="33uICE5SGAmgNpCEIRZAzB">住建部 / 省住建厅</td></tr>
+      <tr data-page-node-id="h3trlRa6wqLDlXURqZsYRd"><td class="k" data-page-node-id="OTmHRiKoCNaoxChtg48zo3">房地产开发企业资质 · 二级</td><td data-page-node-id="aL5NEB8siZ06OqNzLpgphR">企业</td><td data-page-node-id="dRK5VHBxiVfKYuUGGBbfXp">注册资本 ≥ 2000 万元；开发经历 3 年以上；专业人员 ≥ 20 人</td><td class="dept" data-page-node-id="DEHvBDkMNbgwYDSgHoZcTQ">省住建厅</td></tr>
+      <tr data-page-node-id="RV42tTJtBUIuI8tTs1Hj8a"><td class="k" data-page-node-id="x8vZVnY1a98JvRHATDq6qT">房地产开发企业资质 · 三级</td><td data-page-node-id="K20wgvB9W8GmKuYe58l2cH">企业</td><td data-page-node-id="dHiwWRAuocCGxo6xX0wYQp">注册资本 ≥ 800 万元；开发经历 2 年以上；专业人员 ≥ 10 人</td><td class="dept" data-page-node-id="icxYR047PXEH4qL1LcU0PA">省住建厅</td></tr>
+      <tr data-page-node-id="grB92MVhfQ3HUKPl2GiSF5"><td class="k" data-page-node-id="0ox7sjUpvNBJwdfj15yr57">房地产开发企业资质 · 四级</td><td data-page-node-id="HaCAzZ5g0LF5aNMFC9T7iG">企业</td><td data-page-node-id="mODh2glL6pf4xTh8WHIv8B">注册资本 ≥ 300 万元；专业人员 ≥ 5 人</td><td class="dept" data-page-node-id="Hi6CJmFyiGPfR5Gaoi8W2T">省住建厅</td></tr>
+      <tr data-page-node-id="DLRP3RY07NDDUSoTdsPycw"><td class="k" data-page-node-id="GnWKPDzY9lxw7w6DYHLNGt">暂定级</td><td data-page-node-id="dCYPyM3cH03vYgA6pCdg7O">企业</td><td data-page-node-id="r8upKCBsj8aNsm8ViWcTLe">新设企业符合四级条件可暂定，有效期 1 年</td><td class="dept" data-page-node-id="ZBw8qCSnPGTobiUYNQKivo">省住建厅</td></tr>
+      <tr data-page-node-id="WfBBRgxeLVb5pCIzoSR93m"><td class="k" data-page-node-id="qqMKs9AkqeCAPBADITQhWV">建筑业企业资质（施工总承包）</td><td data-page-node-id="tMB70crmwDRZpDu0Un5cWR">企业</td><td data-page-node-id="0bku0fOYbmlUHExxEHbQwf">特级 / 一级 / 二级 / 三级，按房屋建筑等 12 类划分</td><td class="dept" data-page-node-id="LfmQRozA9eFvClN6MXCC2T">住建部 / 省住建厅</td></tr>
+      <tr data-page-node-id="9WSFWSGkrYWGSHa0yolNiI"><td class="k" data-page-node-id="sBpRVHa4v2r95XXOEcC1aC">专业承包资质</td><td data-page-node-id="9fclPyGndHGPMO4Qdp97oD">企业</td><td data-page-node-id="BPzNYpC7Qe6ZJAsZeEurYA">一级 / 二级 / 三级（地基基础、消防设施、幕墙等）</td><td class="dept" data-page-node-id="9SG1pnu806SDRk8IkzONhB">省住建厅 / 市住建局</td></tr>
+      <tr data-page-node-id="cmrgJycwr9jy93Ck4YbZen"><td class="k" data-page-node-id="ifcTzAEwlIahk1L22kW4dy">工程监理企业资质</td><td data-page-node-id="cll5rbkGW5DxjYzSzz5Mbp">企业</td><td data-page-node-id="KEFDzsXuWkMHl737IZC9Cj">综合 / 甲级 / 乙级 / 丙级</td><td class="dept" data-page-node-id="mmL4G2vrogaWzZa6FVrrZ8">住建部 / 省住建厅</td></tr>
+      <tr data-page-node-id="Vqfn0KIPFnlGYZ8ESRbWm2"><td class="k" data-page-node-id="AoZueCOFtWLVby91rRxpFN">工程设计资质</td><td data-page-node-id="BuA9yIH32SqseVRQGowHju">企业</td><td data-page-node-id="aDbc72SSyrcsirCv5Y1ywL">综合 / 行业甲级 / 乙级 / 丙级 / 专项</td><td class="dept" data-page-node-id="4PjB3pOpVWSjZnFRDYnImr">住建部 / 省住建厅</td></tr>
+      <tr data-page-node-id="Ts0LrM5fsdnDrLmQI61sSn"><td class="k" data-page-node-id="6LjpvP2kkyKZA6kUU32lav">工程勘察资质</td><td data-page-node-id="JJsgtAwEKZhABgS8xAEdSj">企业</td><td data-page-node-id="v8axJPh20vjVTsXNDrqLwF">综合 / 专业甲级 / 乙级</td><td class="dept" data-page-node-id="kNoseR9uKdfjjHOgFZGeAl">住建部 / 省住建厅</td></tr>
+      <tr data-page-node-id="Tf6NBAKjfsMnh9XMVveYID"><td class="k" data-page-node-id="JEEzuBUthXHym96HDLDRVj">工程造价咨询企业资质</td><td data-page-node-id="PIRFmTqDCiEVBHKiz1kW4A">企业</td><td data-page-node-id="vCwkhaZ5D4LPBeQq4kFOsj">甲级 / 乙级</td><td class="dept" data-page-node-id="nxUkjHFKc7HnGLfbrYCgxJ">住建部 / 省住建厅</td></tr>
+      <tr data-page-node-id="cRK43799xiPEgT0jGQTay3"><td class="k" data-page-node-id="zS4fiI3k1J0igvwRD8B8To">施工图审查机构</td><td data-page-node-id="ZSmbSJV1azbGLMIsblAYin">机构</td><td data-page-node-id="5NkKcUqwfB2QMNGzYuoesm">一类 / 二类，按审查范围划分</td><td class="dept" data-page-node-id="FduRxmL20PPiftdX6Zv3Jn">省住建厅认定</td></tr>
+      <tr data-page-node-id="QmpPsCOR21CgbD3VTtk3WO"><td class="k" data-page-node-id="8OFij8ONOizmFs0cF9uAbn">物业服务企业</td><td data-page-node-id="jpY5YAg9iPo8khDApuidYj">企业</td><td data-page-node-id="0726plQmhnTb7iIzwz4PiY">备案管理（原一至三级已取消）</td><td class="dept" data-page-node-id="jecHPP2DKxxSO6gpN2AxBz">住建局</td></tr>
+      <tr data-page-node-id="6WZVJFZsjlQXOsbzOwDBaw"><td class="k" data-page-node-id="iacalcRdfXpXmRYz8SWyFA">房地产经纪机构</td><td data-page-node-id="9fTBPA2x679NXI5r0Z4MO1">企业</td><td data-page-node-id="kqxxAj4AwYM5prjZcy2U0U">备案管理</td><td class="dept" data-page-node-id="dHZ2IjLkcEHKmf3WRCOUBh">住建局</td></tr>
+      <tr data-page-node-id="9SFesOHzDAVsVD4bUCGjiQ"><td class="k" data-page-node-id="nLxIARvdtp22AHAqv2KFzg">注册建造师</td><td data-page-node-id="0bAqptOLZlyLQ8bn0WDjm3">人员</td><td data-page-node-id="IRfJMD7Um56zwzotgFzuwE">一级 / 二级；施工项目负责人必备</td><td class="dept" data-page-node-id="6cccFipnWTuhxp5qmhnyzY">住建部注册</td></tr>
+      <tr data-page-node-id="KnuK4xvLc59AGxqp3gtMA8"><td class="k" data-page-node-id="wZQ3yB9v579MbKlCcrS3D3">注册监理工程师</td><td data-page-node-id="tyIlhV8NnIQbaXuhUm4poN">人员</td><td data-page-node-id="mPqfTGHOMzI0Ty5SrQ2BCo">总监理工程师必备</td><td class="dept" data-page-node-id="EGpolJi5bpZbZVh7hI3F8A">住建部注册</td></tr>
+      <tr data-page-node-id="1G0Y4dvqFiPiGGEMuCjgiu"><td class="k" data-page-node-id="ZkvIsh1aWMZ17vDtLoKTMO">注册建筑师</td><td data-page-node-id="8AcvUMnenb9GMvlxYo9j0k">人员</td><td data-page-node-id="k054SZCowBeYaCGSSduZ2F">一级 / 二级；建筑设计负责人</td><td class="dept" data-page-node-id="PCHV21B0a6guHRWJP2yuvN">全国注册建筑师管委会</td></tr>
+      <tr data-page-node-id="AUDpDkbVOARWsruWhWr29p"><td class="k" data-page-node-id="yOJn6SrYjjZxXSijQsfjrv">注册结构工程师</td><td data-page-node-id="I7IRw17NV48JIchlQqdFLO">人员</td><td data-page-node-id="Sh6paGfA7xrcWQpfDivQ7k">一级 / 二级；结构设计负责人</td><td class="dept" data-page-node-id="mL2P79KY0DQPaWRhJ5Ph5j">住建部注册</td></tr>
+      <tr data-page-node-id="3kXM29oSoDVPJTGaNsHOxy"><td class="k" data-page-node-id="DsXNfvZhjvYYUOnKi10XCN">勘察设计注册工程师</td><td data-page-node-id="e8mEvBCNZjNFv6rNOYO44d">人员</td><td data-page-node-id="GptlS5kkByAtnGS6M1aTEs">岩土、公用设备等专业</td><td class="dept" data-page-node-id="LFUu9uROxtnhniDXfXw3Pr">住建部注册</td></tr>
+      <tr data-page-node-id="rZcWZnm9QGCRcOLwnFeFJ8"><td class="k" data-page-node-id="fiWojxosOdbxDGbPKaRZcf">注册造价工程师</td><td data-page-node-id="UcBweUuVxOk1PyR1lgN2Bm">人员</td><td data-page-node-id="RxllhrRB2BMuBvrAj9Rmxb">一级 / 二级；造价编审负责人</td><td class="dept" data-page-node-id="5y3FpBLVcR7xWBSickxG4x">住建部 / 交通 / 水利</td></tr>
+      <tr data-page-node-id="0ORRI8IMTAWZsQiWsP3pgt"><td class="k" data-page-node-id="xA1NRkMv4EcIUTYfxeIY0D">房地产估价师</td><td data-page-node-id="QIpj44MHPaq1f7H7HziZRO">人员</td><td data-page-node-id="bHe9fC21RRvTCmD3Ca2eYb">准入类职业资格；抵押、评估业务</td><td class="dept" data-page-node-id="NQu3q82sGSPQlSx9qrISBL">住建部 / 自然资源部</td></tr>
+      <tr data-page-node-id="YVvJx0jcW5Y9RqxSYIwzhv"><td class="k" data-page-node-id="zQjSlyqMI6wSCbBaMtu6JM">一级注册消防工程师</td><td data-page-node-id="2ErqHyqUi2KIJ9ahZXxZMn">人员</td><td data-page-node-id="09bepF9GqXI7n0Q0RHfZxU">消防安全管理岗位</td><td class="dept" data-page-node-id="g7jrpCxk9yBcGfxGETObkH">消防救援机构</td></tr>
+      <tr data-page-node-id="6kHDbEjG8HeWNCw2s2T0NN"><td class="k" data-page-node-id="k1Qv4ZLDtm1aDHxCqQEYUC">房地产经纪人 / 协理</td><td data-page-node-id="xHFyIfY1Qla4RPzDzVZWMf">人员</td><td data-page-node-id="CowRnvkU3ZE7ozTxAhSIfS">销售代理、居间业务</td><td class="dept" data-page-node-id="YDIR7WZvs1wXnv9Mj5Y3by">中国房地产估价师与经纪人学会</td></tr>
+    </tbody>
+  </table>
+  <div class="note warn" data-page-node-id="6rLOCB8AKxuhlU9sqVqFQX">注：房地产开发企业资质、物业服务企业资质、工程造价咨询企业资质等已陆续由行政许可调整为备案或取消，实际以现行有效规定及当地住建部门口径为准。</div>
+</section>
+
+
+<section id="s8" data-page-node-id="iLKvzFuAf7FSg3K7wJvKbo">
+  <h2 data-page-node-id="H2AnqB70lj6DOgbQKGsTb9"><span class="idx" data-page-node-id="7lESRd2esDyBIgCwFJXcHy">8</span>政策法规依据总表<span class="tag" data-page-node-id="dlvSyJNz6a3G3xVQRCSoWi">效力层级：法律 &gt; 行政法规 &gt; 部门规章 &gt; 地方规定</span></h2>
+  <div class="note warn" data-page-node-id="B0a0jAkgXd6eE0kYR92Efq">以下条款为核心内容摘述，用于快速索引。实际引用、论证或对外出具意见时，必须核对现行有效文本，并注意修订与废止情况。</div>
+
+  <table class="lawtbl" data-page-node-id="gt8wOZBePBERskeBsSaej9">
+    <thead data-page-node-id="UYKuW3UKh1jSsqpNBS2u36"><tr data-page-node-id="02PFNxTk51r4mqL331EFrE"><th style="width:9%" data-page-node-id="ME4jzo0q0EAz401Gwy5kjI">层级</th><th style="width:34%" data-page-node-id="naf6HmOdM3DH1GG1kQOQwf">文件名称</th><th style="width:13%" data-page-node-id="2dR792YAzIvuPunsjxlv6u">适用环节</th><th data-page-node-id="QctdeepjOSJ1mF5KwvoP8A">核心规定要点</th></tr></thead>
+    <tbody data-page-node-id="E0KV1D8GaLrYKzC3qXlsm0">
+      <tr data-page-node-id="qMC4VGkW01EM4BcU4mTyZA"><td data-page-node-id="utnZtJPb2GLqwANbKDGzMT"><span class="lv lv1" data-page-node-id="7pvIW3lt5mVWWq02L6Z0EN">法律</span></td><td class="k" data-page-node-id="CARd9sZ4cOlx2iYITjtyKt">《中华人民共和国城市房地产管理法》</td><td data-page-node-id="aOtyGDjsMnzzuBmlrEVw8b">全程</td><td class="doc" data-page-node-id="5OejXFOoB5sEdT2duBBv2X">房地产开发用地、开发、交易、权属登记的基本法律；确立预售许可制度</td></tr>
+      <tr data-page-node-id="OPM7SNMqpliqpvVJyAUzGK"><td data-page-node-id="9zPARtwio4T6wog74ZVKVG"><span class="lv lv1" data-page-node-id="uLi2R2v4RWYSCFBoBvxs6T">法律</span></td><td class="k" data-page-node-id="9khlTAqHWv3eOCY5BE6Ctx">《中华人民共和国土地管理法》</td><td data-page-node-id="2kpKBfa8vpF3Of1tizitIa">土地获取</td><td class="doc" data-page-node-id="JWRINMu8ryTghE9mToahEz">土地所有权与使用权、农用地转用、土地征收与出让的基本规则</td></tr>
+      <tr data-page-node-id="dm7EUd9suuGl5BAcszrTik"><td data-page-node-id="JN04nOpiYKn9Ce4f2CR6eg"><span class="lv lv1" data-page-node-id="D6YFapDoeC2Btj8swhaWLW">法律</span></td><td class="k" data-page-node-id="KGPAfRHXVPRvBm7hVOWon4">《中华人民共和国城乡规划法》</td><td data-page-node-id="nBKlQzpotH6wYX2cQJC3S2">规划报建</td><td class="doc" data-page-node-id="Z4PGkFbS87BE9F3DTwmP1Z">选址意见书、建设用地规划许可、建设工程规划许可的法定依据</td></tr>
+      <tr data-page-node-id="I9Czi3CENtyAWmZJuFEoaq"><td data-page-node-id="YEW67f0rdk4FEmgrGL1gZq"><span class="lv lv1" data-page-node-id="0PPrHyHKd0DZdKiEacUnsV">法律</span></td><td class="k" data-page-node-id="cYpFhzcsCgUbw5pDHEMGbJ">《中华人民共和国民法典》</td><td data-page-node-id="WYoVWMgj5AYTDNjfn71Tw3">交易交付</td><td class="doc" data-page-node-id="HjYR5MZ7eLFHAebOiD0mLp">建设用地使用权、商品房买卖合同、抵押与登记效力</td></tr>
+      <tr data-page-node-id="oD7qXgkJr1ZJn08W1FM6Qd"><td data-page-node-id="1JdX8EHZ8yH1ZrqH1EG5Qt"><span class="lv lv1" data-page-node-id="P9uoRGSHxW51k7iI4bNrup">法律</span></td><td class="k" data-page-node-id="AMr7YHRrEdcFwEPTb8EsHr">《中华人民共和国建筑法》</td><td data-page-node-id="2glHiwhJelmajkvMBue5qG">施工建设</td><td class="doc" data-page-node-id="0Nf8Cf4p3wGWd9VhshcQ7X">施工许可、从业资格、工程发包承包、质量与安全的基本制度</td></tr>
+      <tr data-page-node-id="PNq1OS7GsFBOMAEDusmETF"><td data-page-node-id="ylyBdowaTafbzTzKDfxGaN"><span class="lv lv1" data-page-node-id="JlrOrRrKGXaLcTXQqSFwkL">法律</span></td><td class="k" data-page-node-id="RUXFXDGEKpvHd2bDOUEaX3">《中华人民共和国招标投标法》</td><td data-page-node-id="Pohl6vH3BSAoKt9TdgyGAa">施工建设</td><td class="doc" data-page-node-id="XbAIiSoJxAw9E4D4jQHDGv">必须招标的项目范围、招标程序、中标效力</td></tr>
+      <tr data-page-node-id="0PGvEeTgXnWtlV7AWjW16Y"><td data-page-node-id="raijF8CRtHg1ZVAnOjrfg8"><span class="lv lv1" data-page-node-id="lDNxJ7HFR6WNeAb8NXQSX8">法律</span></td><td class="k" data-page-node-id="M1HOlYcJA2sIkf6UjwT23K">《中华人民共和国文物保护法》</td><td data-page-node-id="SF3zVUmZsGv4pGqVoEnJkP">土地获取</td><td class="doc" data-page-node-id="bVQ02eTpJCSwXGgGQ006jr">考古调查、勘探前置要求（涉地下文物埋藏区）</td></tr>
+      <tr data-page-node-id="rRBE8mHAexErJJbMUbTVFh"><td data-page-node-id="gNYYwBe2GHj6bnfLW1NYbZ"><span class="lv lv1" data-page-node-id="MEn6dj4TOyA2Ai3pv8lR1O">法律</span></td><td class="k" data-page-node-id="Dwwfj050xFJH3BzfKXAMbL">《中华人民共和国人民防空法》</td><td data-page-node-id="14N86O9TAEFyuBzAXPr4KP">报建</td><td class="doc" data-page-node-id="DGTweriPZfOZYG5n4SbSH5">人防工程建设义务、易地建设条件与审批</td></tr>
+      <tr data-page-node-id="51L9m7mbNRHBJtmo9sDyT3"><td data-page-node-id="OOTzHN3QiINEXfE0bbJC7Y"><span class="lv lv1" data-page-node-id="ujtANnjFCKLIauYE2oaUV2">法律</span></td><td class="k" data-page-node-id="gEMj1kxXc8Actx3NdISKhC">《中华人民共和国消防法》</td><td data-page-node-id="UUq2IUv0I3liSi8rmHLDQT">报建 / 竣工</td><td class="doc" data-page-node-id="UaFfSysfNdFgl7KivrGGxY">消防设计审查、消防验收与备案抽查制度</td></tr>
+      <tr data-page-node-id="SzZfSnKijy5ZRLbW1ollMW"><td data-page-node-id="kZLDKAcQ1DLdJKFctPBWeC"><span class="lv lv1" data-page-node-id="KB12R5oDttuQBl80zn5ic7">法律</span></td><td class="k" data-page-node-id="lIRESe8H7H5wtc6U8B67Sm">《中华人民共和国环境保护法》</td><td data-page-node-id="8L2wkYt8gy1VHNRlNX5gqC">前期 / 竣工</td><td class="doc" data-page-node-id="vkWyhT6fbRJmMR3LDLXbGk">环境影响评价、环保设施「三同时」与验收</td></tr>
+      <tr data-page-node-id="y1R3IoQsv7bITIJMV731Qv"><td data-page-node-id="GDNqFTurT3tMstmcEsa3Zn"><span class="lv lv1" data-page-node-id="QlZiUWFzoPRe8xU9INvlaA">法律</span></td><td class="k" data-page-node-id="iiGMJfjsH6iSbDXkSD8tRC">《中华人民共和国契税法》</td><td data-page-node-id="CoN5g7VV6WKqTkcsjmUhnB">税费</td><td class="doc" data-page-node-id="nTPjTmlAR5vMPHNwZL3AEq">土地使用权出让契税，税率 3%–5%，各省定具体适用税率</td></tr>
+      <tr data-page-node-id="YnagLtS43lwWXKYCj2Getx"><td data-page-node-id="6vVL9RaTKIhiUvDNqI6V5m"><span class="lv lv1" data-page-node-id="fxDcugvkXl2SH1XTcCUSMz">法律</span></td><td class="k" data-page-node-id="HuuUP2apI1XWhugLLOAqt8">《中华人民共和国土地增值税暂行条例》</td><td data-page-node-id="LsAxHA5kGoKIeBK32Hr8kw">税费</td><td class="doc" data-page-node-id="KDiOHvBgNEmWuVzpBM9qTM">四级超率累进税率 30%–60%，增值额与扣除项目规则</td></tr>
+      <tr data-page-node-id="fPT3ldglOdPnpb7rZ7MzMa"><td data-page-node-id="uZHyeFclNjW9hvwiwPDRpX"><span class="lv lv1" data-page-node-id="c94qyh4UDHmL2NiO9Z12EB">法律</span></td><td class="k" data-page-node-id="ZBXeSJ3EQbUfQ8vxFU2Jiu">《中华人民共和国印花税法》</td><td data-page-node-id="H2yfYb8TG6zG3bolDwr4lu">税费</td><td class="doc" data-page-node-id="pb2j2KreGuaxw8PZ7t9xnV">产权转移书据 0.05%、建设工程合同 0.03%、买卖合同 0.03%</td></tr>
+      <tr data-page-node-id="0dxgnHEy36Nq5AIp0jBTYa"><td data-page-node-id="wASFJyyFvZMsahUGdDVqgO"><span class="lv lv1" data-page-node-id="U9qB8VLniASmndQFV0dg9X">法律</span></td><td class="k" data-page-node-id="IYkPg7Eg8H9ACHvk7xQUrD">《中华人民共和国水土保持法》</td><td data-page-node-id="sFY2ABxWB2XvWRsHh6hupO">前期</td><td class="doc" data-page-node-id="BpuDUeDqDhSo2K0uEyTBHl">可能造成水土流失的生产建设项目须编报水土保持方案</td></tr>
+      <tr data-page-node-id="e3jwgd2BIWZjc5ok9jAWj2"><td data-page-node-id="NKoEhtLd7R0UBu8dfhbqZV"><span class="lv lv2" data-page-node-id="TgXNdyQSaS4LXbm8YZl6Tu">行政法规</span></td><td class="k" data-page-node-id="9gdAJlApmaOOg60KbpxxnD">《城市房地产开发经营管理条例》</td><td data-page-node-id="WRJXsbeevHbSN4hNnnUTXp">全程</td><td class="doc" data-page-node-id="c07tIRwp3M5x60totyr29E">开发企业设立与资质、开发建设、经营、法律责任；确立「两书」制度</td></tr>
+      <tr data-page-node-id="S0uzF0XrAUg4ek06gmIwug"><td data-page-node-id="HLDmAX0rE9N5Q4U0Ap8GzL"><span class="lv lv2" data-page-node-id="kFx5KsHoFPU5NgQGuWZfwA">行政法规</span></td><td class="k" data-page-node-id="03fqc4Wx0TysIhn5RvnrDM">《建设工程质量管理条例》</td><td data-page-node-id="mTAaIqaMtWRTyIDqBanzfg">施工 / 竣工</td><td class="doc" data-page-node-id="odEuw7RyBZObzYPiF5fj9D">五方质量责任；竣工验收与备案（第四十九条：15 日内备案）</td></tr>
+      <tr data-page-node-id="eKgRPlGtBm2YttDRox5vez"><td data-page-node-id="ujdIGwBEUYeDr5GvW3ga9r"><span class="lv lv2" data-page-node-id="zYx3MzvZOIptRAx1nOixGz">行政法规</span></td><td class="k" data-page-node-id="43FhSkTtzwepIUTLSRSxZg">《建设工程安全生产管理条例》</td><td data-page-node-id="pai9HiFyxAM8PwEw1GO1jA">施工</td><td class="doc" data-page-node-id="gBwKROEJ5YeAxeiu2vF93Y">各方安全责任、安全技术措施、专项施工方案</td></tr>
+      <tr data-page-node-id="9ow4bh24zEVPvlwNK0xBYv"><td data-page-node-id="3JqKPVQp20x3G8UkX3iLMl"><span class="lv lv2" data-page-node-id="VpeSkizoYYmkBjrYGdWQRy">行政法规</span></td><td class="k" data-page-node-id="UpNLJnVFaJF2AcJs5dTQJF">《不动产登记暂行条例》</td><td data-page-node-id="4t8PrpNBOKODB1ORXxez6I">登记</td><td class="doc" data-page-node-id="KDcnrstyfPh3HAP52ijh5X">首次登记、转移登记、抵押登记的类型与程序</td></tr>
+      <tr data-page-node-id="VjIaaFcCdYyuklFXMGNE6F"><td data-page-node-id="pJlR7JVs4Hwqgyfmkmdp6u"><span class="lv lv2" data-page-node-id="CqEEnkAFvNABedYVN1tq5x">行政法规</span></td><td class="k" data-page-node-id="Hvid3HqKVOKIcmz2CVJsTM">《国有土地上房屋征收与补偿条例》</td><td data-page-node-id="uujQFSxHuGtF4BG5Lhyxdm">土地获取</td><td class="doc" data-page-node-id="daCM7L3DdCS679YaTBAz1J">征收程序、补偿标准、评估与救济</td></tr>
+      <tr data-page-node-id="KoX9YJzk4TKnTdALEnG4kJ"><td data-page-node-id="f7bUCB5O4hpdkMISqEIvUR"><span class="lv lv2" data-page-node-id="Lr0p4zTVdGkWu1f2q9n3kZ">行政法规</span></td><td class="k" data-page-node-id="Dg8OxyuPL6u3yWSE7awo3G">《物业管理条例》</td><td data-page-node-id="WVsQC7dEo6kxXQjrZIuiMw">交付后</td><td class="doc" data-page-node-id="MgHzyCDhFywmWFjHBl0Ze3">前期物业管理、业主大会、专项维修资金</td></tr>
+      <tr data-page-node-id="9jNH40to51759ADzGKM53O"><td data-page-node-id="drKbSrUoMQSGUQQUsbLBHt"><span class="lv lv2" data-page-node-id="vHnpdQY5yUSe5jwEEt53L7">行政法规</span></td><td class="k" data-page-node-id="ewDBuG9BikwMQmqCXBBDPK">《建设项目环境保护管理条例》</td><td data-page-node-id="CqLp5L21Jimt2F1FIkAZV9">竣工</td><td class="doc" data-page-node-id="i14WdYy2xBkMMvDd9p1gPE">环保设施「三同时」；验收报告公示后备案</td></tr>
+      <tr data-page-node-id="Lqs5Lkl0hUaWNUrHWlEurW"><td data-page-node-id="HwIxs1ajFfh6yJvkSC78Mf"><span class="lv lv2" data-page-node-id="mr4e8f5GOTDRlkmcbTscdI">行政法规</span></td><td class="k" data-page-node-id="IOkaBKnpdOQxhcSGnGi1wW">《企业投资项目核准和备案管理条例》</td><td data-page-node-id="DYAuQoKeZvUuJwFWqHJETx">立项</td><td class="doc" data-page-node-id="gzYdxLcDAp8v5kDZN2WqI5">备案为主、核准为例外</td></tr>
+      <tr data-page-node-id="Oau1lY1T8Hw27Rfyd2RiLQ"><td data-page-node-id="zAU8a8WJC6h3o11LaXn7CR"><span class="lv lv2" data-page-node-id="4THF7AhI2ZVNSFl0RLiztG">行政法规</span></td><td class="k" data-page-node-id="CgoEY51gHdFWZjoXnLdgt9">《保障农民工工资支付条例》</td><td data-page-node-id="Y2qS6sG9CHsqAYqmrcJvbb">施工</td><td class="doc" data-page-node-id="nZIkQXWNzryqY9H8OtxP8z">工资保证金、专用账户、实名制管理</td></tr>
+      <tr data-page-node-id="RwrzVSUCpq3ELPvnKqXIBV"><td data-page-node-id="BAwE09VFsi3y3LHqufUunj"><span class="lv lv3" data-page-node-id="RsQCHQ0xjQnAIPiRP1vsD7">部门规章</span></td><td class="k" data-page-node-id="r30JR5tbejVYNOg2pohDYw">《城市商品房预售管理办法》</td><td data-page-node-id="RDnIQtV4M9mQVsx6ow2DPK">预售</td><td class="doc" data-page-node-id="0tg3TcgT2MM5rjBLjpaLCu">预售条件、预售许可申请材料、预售款监管</td></tr>
+      <tr data-page-node-id="6HQYjsq5rqpKBQZBsF3SON"><td data-page-node-id="J7RPfSCmDi7vIqKFTkhiyw"><span class="lv lv3" data-page-node-id="o7kLtSl1lgTbIzoRtmg3A8">部门规章</span></td><td class="k" data-page-node-id="nZk7oeOhgW1R9ktunzo1jO">《商品房销售管理办法》</td><td data-page-node-id="krytyeYmUW1EaBfVRyzCd9">销售</td><td class="doc" data-page-node-id="nbskMX6pcZxzPzmzV9RVXj">现售与预售条件、广告、合同、交付与违约责任</td></tr>
+      <tr data-page-node-id="raRB7gzRRTdm9spkWh4IfE"><td data-page-node-id="5QfB2Ko1BmXAZkEBNLMbAW"><span class="lv lv3" data-page-node-id="cFKqBdTCsiUvz84KqtbhxM">部门规章</span></td><td class="k" data-page-node-id="aT4W4bcHAWoSgaWfOjfEZW">《房地产开发企业资质管理规定》</td><td data-page-node-id="7Wh4Xq3ln9Xkb7Wi8qiAOn">主体资格</td><td class="doc" data-page-node-id="srs4aXVT1nlXtInUDfsG37">一至四级与暂定级条件、承接范围（现按备案口径执行）</td></tr>
+      <tr data-page-node-id="NEWPxdm0iKBAmmYtAYW6rq"><td data-page-node-id="n95itdCfefO6qnZZLRemnO"><span class="lv lv3" data-page-node-id="vS6WwSiddws0fJBvldzaTk">部门规章</span></td><td class="k" data-page-node-id="miskjvtGPSmKM0UGMA2qxN">《建筑业企业资质管理规定》</td><td data-page-node-id="k9jGSU96WEzC4C8C4glvjH">施工</td><td class="doc" data-page-node-id="IIdtHJNe1KLFvWj3JO1yhS">总承包与专业承包资质序列、等级与承接范围</td></tr>
+      <tr data-page-node-id="UjXmjlQCpfgKi0ohE4wrST"><td data-page-node-id="j0ts1iqVHkSocyP8767qpb"><span class="lv lv3" data-page-node-id="NMgtSeb24owNQgCbzR6E2E">部门规章</span></td><td class="k" data-page-node-id="pc3MGTF2SRYvQCDHzTtJp8">《建筑工程施工许可管理办法》</td><td data-page-node-id="gV1OG9vlq2TMyhMKT1yJS0">施工许可</td><td class="doc" data-page-node-id="SpXXqXCrgQtkrDHPhx7bBe">申请条件、7 日发证时限、变更与延期、未办证开工的处罚</td></tr>
+      <tr data-page-node-id="7SYGMm6SpDyKnR8AdcR9At"><td data-page-node-id="nO3JdAHGKpgm3x3rpKzP4R"><span class="lv lv3" data-page-node-id="RUBFPglrroiSTtER0YDffo">部门规章</span></td><td class="k" data-page-node-id="N1CmYVzEZMgKmg8NeKHgMb">《房屋建筑和市政基础设施工程施工图设计文件审查管理办法》</td><td data-page-node-id="cLWIEHWU1UONZjGFriUTfp">施工图审查</td><td class="doc" data-page-node-id="ZTvbZFATB7GxFxM5ExnJT7">审查机构条件、审查内容、合格书出具</td></tr>
+      <tr data-page-node-id="VJmDF6v6MriNSgGm4x9acy"><td data-page-node-id="aa3yC8QXeFFr888TEgLDrU"><span class="lv lv3" data-page-node-id="uwvGtI1l85cZkOqdxsk6A1">部门规章</span></td><td class="k" data-page-node-id="HwMEr3Rk6rtQ2uVctELIfA">《房屋建筑和市政基础设施工程竣工验收备案管理办法》</td><td data-page-node-id="xRiyZsPHMWKvUq8FGWnVZ6">竣工</td><td class="doc" data-page-node-id="I3asAwsyL6gBBVvZDNQtU0">备案时限、备案文件清单</td></tr>
+      <tr data-page-node-id="b2pOlV9wRt2vEjAcY3DQSm"><td data-page-node-id="U8yeClNH3A3uXshUl4mhQu"><span class="lv lv3" data-page-node-id="IFYzjA20AkSHiFM8E5qKkJ">部门规章</span></td><td class="k" data-page-node-id="TKSCBiRPeAfe4c9TGFM2TS">《闲置土地处置办法》</td><td data-page-node-id="TIC2KHBfribv10gdwvQ7Ph">土地</td><td class="doc" data-page-node-id="MU1MTw3wdwvrcsxCDxf2Df">闲置认定标准与处置方式（延长开发、收回等）</td></tr>
+      <tr data-page-node-id="K5HIaz51dP5abM9YPv83HN"><td data-page-node-id="HjlA67eDOic4WsTYWlgPKa"><span class="lv lv3" data-page-node-id="pko7SEHlWJPsnJIVR1AeqS">部门规章</span></td><td class="k" data-page-node-id="E1RgELu1FNM8HH7eYVKuU7">《商品房销售明码标价规定》</td><td data-page-node-id="uPUyNsOYGAbC3FAPmhnWbR">销售</td><td class="doc" data-page-node-id="K7H50tHD1nZx9f6VhJU9vK">一房一价、明码标价</td></tr>
+      <tr data-page-node-id="GdpnZFFTFx7KqK9Eouw7oZ"><td data-page-node-id="XCC3utFCuvEp9lgyIs2ZyX"><span class="lv lv3" data-page-node-id="BGpvlCcCxMVgRsFl60Jwwa">部门规章</span></td><td class="k" data-page-node-id="lF5M4FwMAzvwnbaBuhFYpH">《房地产广告发布规定》</td><td data-page-node-id="T5G1zTGKoEe5grWTTN2aZW">销售</td><td class="doc" data-page-node-id="F0bzpueyagw9lgCge1PFFG">禁止承诺升学、投资回报、升值等误导内容</td></tr>
+      <tr data-page-node-id="Xvduh1FPfYPR42BHD2DRSF"><td data-page-node-id="SP6mcw3OM2eVU4XktEIlYN"><span class="lv lv3" data-page-node-id="sbOSFUoyRZIvjjvT8rmorB">部门规章</span></td><td class="k" data-page-node-id="2rHsJQHLxeAE5KJFvYskhI">《工程建设项目审批制度改革实施方案》（国办发〔2019〕11号）</td><td data-page-node-id="Fra0lVTU4YxYtEjfGwMviD">全程</td><td class="doc" data-page-node-id="3oBb3Lyv6wNlABXtO3z0by">「多规合一」「多审合一」「联合验收」制度来源</td></tr>
+      <tr data-page-node-id="lPBuGmAmMxphWK95zCJBHc"><td data-page-node-id="XEs2QSVWAqwQyPqihO44vN"><span class="lv lv4" data-page-node-id="RwUMXi5Vr8JdyFj74zd1y8">地方规定</span></td><td class="k" data-page-node-id="r8cuDQpg46rg05CwKWkpje">地方商品房预售资金监管办法</td><td data-page-node-id="mOg5MT4FjLKADwTWNaDCVB">预售</td><td class="doc" data-page-node-id="F85M7g0PVHU0TMbuD7HRCp">监管额度、拨付节点、专户管理（各地差异大）</td></tr>
+      <tr data-page-node-id="koBJJ4ZwZi6FbAC1MFDD18"><td data-page-node-id="V1ijBaqgicy6TbV1EzSGLl"><span class="lv lv4" data-page-node-id="jdBsgR2CcszAuDs9ZvV2AS">地方规定</span></td><td class="k" data-page-node-id="AMNnFF3aDTJ0hNI82ZOSuF">地方城市基础设施配套费征收管理办法</td><td data-page-node-id="udY2Lou7LmF4pAJFm81wqO">报建</td><td class="doc" data-page-node-id="yP42Sapku7ylsRqRVEwMBR">计征标准与减免情形（各地差异大）</td></tr>
+      <tr data-page-node-id="26txhGG20VimETKvCYrn8h"><td data-page-node-id="AdEzH0ChaFtAyVQXDoYqX6"><span class="lv lv4" data-page-node-id="hwZsVV7PBdBvON0ColHkb7">地方规定</span></td><td class="k" data-page-node-id="d28RTODA6j8jMyZln1LRH6">地方房屋建筑和市政工程竣工联合验收实施办法</td><td data-page-node-id="959Us41ZXObzLQ9yaQEnCh">竣工</td><td class="doc" data-page-node-id="naNveCjmDWHQOLrMnDqPw9">联合验收事项清单、时限与并联办理规则</td></tr>
+      <tr data-page-node-id="ykGX5J9SJsQZPvcHVIM7tF"><td data-page-node-id="CkTmQgCpDN9PgM9SlpwtQH"><span class="lv lv4" data-page-node-id="gBn1YTQn6iz0adHjaU9mAB">地方规定</span></td><td class="k" data-page-node-id="ryqRrRkB0VcJB170HZD7Fk">地方房地产市场调控相关通知</td><td data-page-node-id="drIJmf7BjruZleepaZ5sc3">销售</td><td class="doc" data-page-node-id="QgVPubvGqeBdMZrtYxw2CH">限购、限价、限售等阶段性措施（时效性强）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s9" data-page-node-id="KJIAPI3bCehnDBEJJL46R9">
+  <h2 data-page-node-id="EI8q0rZx4DT1TFpA0lJ1WU"><span class="idx" data-page-node-id="UJzsIzJ31jkEvaOkFISbaH">9</span>核心证照要素示意<span class="tag" data-page-node-id="jXkgs7e5JmtXumVYwC7Mdi">版面示意卡 · 非官方实样</span></h2>
+  <div class="disc" data-page-node-id="Gx7TfIzGQ6LDj7UMFFkWEK">
+    <b data-page-node-id="BJGhEwraENOYGUZWXUXhuE">关于「证件样图」的处理说明：</b>政府证照含防伪底纹、二维码、钢印/骑缝章等法定要素，网络上流传的所谓样图多不可靠，直接引用或仿制存在误导与合规风险，因此本表不提供图片。改为<b data-page-node-id="4h8XE8cD0AaEy4ncCGfARU">规范化版面示意卡</b>——列明每份证件的法定名称、发证机关、编号规则与核心记载事项，可用于建立台账字段、核对真伪要素。需要实样请通过各发证机关官网或政务服务平台查询，或向办证窗口索取空白格式。
+  </div>
+  <div class="cards" data-page-node-id="rsXobHYWNiovFOBw4chqwY">
+
+    <div class="card" data-page-node-id="IiScgw8zvuOHvzUp5SCRVP"><h3 data-page-node-id="coqKxFc2QCMgdMxbc6Abgt">不动产权证书</h3><div class="bd" data-page-node-id="gC9NJFqGwVWGo9wg2WuLqF">
+      <div data-page-node-id="YowL60GNxzTFQmWl95ECUa"><span class="lb" data-page-node-id="TBLyr620uxafSJzuoMOu3w">发证机关：</span>县级以上不动产登记机构</div>
+      <div data-page-node-id="PLAdgTWBLRuJHmLbN3VdB9"><span class="lb" data-page-node-id="BKjjs5eIXeS0ZCNbtzFPQb">编号规则：</span>证书编号，一般含省市代码、年份与流水号</div>
+      <div data-page-node-id="dFrFPzjCC24ibycMw3utGz"><span class="lb" data-page-node-id="vXOxjVb75xQw8UznzP0toR">核心记载：</span>权利人、共有情况、坐落、不动产单元号（28 位）、权利类型、权利性质、用途、面积、使用期限</div>
+      <div data-page-node-id="Bztak59RCAFYKYxGABmFkU"><span class="lb" data-page-node-id="YHvEJRmvjNEvRbuA13wyau">附件：</span>附记页、宗地图 / 房产平面图</div>
+      <div data-page-node-id="w9363lwpGFCC2vITvxyVlB"><span class="lb" data-page-node-id="EDOCycroSi3q6iAZTFtFQa">防伪要素：</span>二维码、水印、登记机构登记专用章</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="KDYj8sKvZO3e0PONgB1vb7"><h3 data-page-node-id="8ZiSfVgHDK0WJuHXANrrdJ">建设用地规划许可证</h3><div class="bd" data-page-node-id="nQRytIMf2HDWcfUuamF3rk">
+      <div data-page-node-id="EbfobVrbnIN7f85so2C0TF"><span class="lb" data-page-node-id="uNdKKifXEG9LcNIcetI3a3">发证机关：</span>城市、县政府城乡规划主管部门</div>
+      <div data-page-node-id="gkhUwwxI9bjUMC4sm0GP2q"><span class="lb" data-page-node-id="Afxqm0aP4KfFhil7GwkEdT">依据：</span>《城乡规划法》第三十八条</div>
+      <div data-page-node-id="MAUMOiEZwf0oa0bA0BSxs4"><span class="lb" data-page-node-id="YHazAzaIRUlb7y7n3Jobe5">核心记载：</span>用地单位、项目名称、用地位置、用地性质、用地面积、建设规模、红线图</div>
+      <div data-page-node-id="SUFwzJKfD3rl2FYiFXYhmu"><span class="lb" data-page-node-id="kc2P9afd961YyvmI8kJUX1">注意：</span>取得后须按期限办理用地手续，逾期失效</div>
+      <div data-page-node-id="QsfBEpvnHniGHnzGbxngv9"><span class="lb" data-page-node-id="6oRBJcVsReXwiVmUE0hc0y">防伪要素：</span>编号、发证机关公章</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="o8N8Rg08KmQKEM0PbJHdGN"><h3 data-page-node-id="VIQNYNJfWfNDHkpunG3hqP">建设工程规划许可证</h3><div class="bd" data-page-node-id="6zFOAOXCenfMhHRmlaqhCl">
+      <div data-page-node-id="Dp9k34qvJhzDObSFgY1deG"><span class="lb" data-page-node-id="9Nf1GIU5Y7KHVhRRuBh5Dl">发证机关：</span>城乡规划主管部门</div>
+      <div data-page-node-id="XWi3sUleNvYCtjgzFJSKYC"><span class="lb" data-page-node-id="niYBhEN5xgyFQHe2XyD9ik">依据：</span>《城乡规划法》第四十条</div>
+      <div data-page-node-id="Cf7UAfEpWzhx4BDYqcOIfB"><span class="lb" data-page-node-id="JLGua0nZxIQgEGdip32R0F">核心记载：</span>建设单位、项目名称、建设位置、建设规模（总建筑面积、层数）、总平面图、建筑单体图</div>
+      <div data-page-node-id="5FTluu1qZKh88wHxCKEaEA"><span class="lb" data-page-node-id="qSxhvqrrTzmU7m9Hmyzq35">作用：</span>施工许可前置条件；竣工时据此做规划条件核实</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="Ftn9AMWyqq6OUhbB30KKzM"><h3 data-page-node-id="rBNbrmrrGUoEZCFM31VVCc">建筑工程施工许可证</h3><div class="bd" data-page-node-id="ElrUPbLGp8BBuU9CQw6umg">
+      <div data-page-node-id="F7AZziApSAChI6bimlcjhA"><span class="lb" data-page-node-id="Z11m8BjXO6WwrAYXM4fXfL">发证机关：</span>工程所在地县级以上住建主管部门</div>
+      <div data-page-node-id="ZlmFTyzGe9Z24Z5D8z7fhe"><span class="lb" data-page-node-id="O0CVofHILcoMkszntJRcOL">依据：</span>《建筑法》第七条；《建筑工程施工许可管理办法》</div>
+      <div data-page-node-id="YwDUUOadqIoJNKLvZRXUkf"><span class="lb" data-page-node-id="9Vxx9t6VUy7Nl93nruAQot">核心记载：</span>建设单位、工程名称、建设地址、建设规模、合同价格、设计/施工/监理单位、合同工期、项目负责人</div>
+      <div data-page-node-id="spFFGEHn8pz2FLKmVVHMUd"><span class="lb" data-page-node-id="5sb2HHH6Duv9a0d4XJW7R1">时限：</span>受理后 7 日内颁发</div>
+      <div data-page-node-id="78yQdXN3Gl02gR0wtDbv8j"><span class="lb hl" data-page-node-id="V67HFWzEMvfi7EAdy49eZj">延期规则：</span>领证后 3 个月内开工，可延期两次、每次不超过 3 个月</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="6aYgaUY9ZOnGRuGUgTVSUD"><h3 data-page-node-id="5PClxHcc31cq8X6hFtCmRz">商品房预售许可证</h3><div class="bd" data-page-node-id="xHsTPuKfsEj6Nq97pvsiHn">
+      <div data-page-node-id="dJkG3XE6DxQG1jvLbbzH5M"><span class="lb" data-page-node-id="cYGWqGaG1vL1Soj0KHZ0Oz">发证机关：</span>市、县住建（房产管理）部门</div>
+      <div data-page-node-id="QYQOGNZ524kCvcH7Yh3wY0"><span class="lb" data-page-node-id="FYjy7wjJGpiGX4YmRpXuQr">依据：</span>《城市房地产管理法》第四十五条；《城市商品房预售管理办法》</div>
+      <div data-page-node-id="oireboOsNChXnhmEBgDtiZ"><span class="lb" data-page-node-id="2pgFMZ2MK4tsxxYeLLxcA5">核心记载：</span>开发企业、项目名称、预售范围（楼栋号）、预售总建筑面积与套数、监管银行及账户、有效期限</div>
+      <div data-page-node-id="XVzMebJm05F8S2R7MUM48E"><span class="lb hl" data-page-node-id="UOSaq38F36utH07dzypBiv">法定条件：</span>出让金付清 + 土地使用权证 + 工规证 + 投入资金达总投资 25% 以上 + 已确定施工进度与竣工交付日期</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="4zzmAa6BDass6cGWQIDLla"><h3 data-page-node-id="1SFNiB2LOjD1WablPVBg9D">竣工验收备案表</h3><div class="bd" data-page-node-id="ghumnVUx8vHSr6HDTIOgTG">
+      <div data-page-node-id="wAgoNHqUfZAXU572Gh4vqm"><span class="lb" data-page-node-id="FW5NGdVI6UgayymnsOtmPE">备案机关：</span>县级以上住建主管部门</div>
+      <div data-page-node-id="sf1VvI0T7UUDAxCoPaAAam"><span class="lb" data-page-node-id="t9xTzDlTUG0TD0mZwkC1Gh">依据：</span>《建设工程质量管理条例》第四十九条</div>
+      <div data-page-node-id="SEtG3zbE8oeTeIFbA3DtlT"><span class="lb hl" data-page-node-id="dppdRVxHDlOXQES1Hxza7X">时限：</span>竣工验收合格之日起 15 日内备案</div>
+      <div data-page-node-id="LpjDVz53AFQ1dIL41FEbs7"><span class="lb" data-page-node-id="JHvEotoKd5CtdhaRmnHOYQ">配套文件：</span>规划核实意见、消防验收意见、环保验收备案、人防验收备案、档案认可文件</div>
+      <div data-page-node-id="RTX4tBfQzJLVlboA90fLWk"><span class="lb" data-page-node-id="aS84iYdvQdwTBdkyJiPe4S">作用：</span>办理不动产首次登记的前置条件</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="8xoCBg58KwDp7XYYcXESuo"><h3 data-page-node-id="d3Stn7aRCev5RcDJHw34jA">住宅质量保证书 · 使用说明书</h3><div class="bd" data-page-node-id="ZURu7GFe5cPLPiC7xG9mGj">
+      <div data-page-node-id="OmVU77tjFP17bB63M4iDqg"><span class="lb" data-page-node-id="Ymram9niy00pxupGHy4rsB">出具主体：</span>房地产开发企业（非政府发证）</div>
+      <div data-page-node-id="KoNBzBKmug8HbZb5jBUObq"><span class="lb" data-page-node-id="2goZPYZjvjXBXhRz6frNUO">依据：</span>《城市房地产开发经营管理条例》第三十一条</div>
+      <div data-page-node-id="K5s0uDkJnaIW7SosEiC9Pc"><span class="lb" data-page-node-id="ldwhlO7mKo7eDGIjtcGKEy">质量保证书：</span>保修范围与期限（地基基础与主体结构为设计合理使用年限；屋面防水 5 年；墙面地面 2 年等）、保修责任单位与联系方式</div>
+      <div data-page-node-id="6yfzvwQkmFb0EfkLnKPxBt"><span class="lb" data-page-node-id="MELqyHunGwA2cGIfJKDk0I">使用说明书：</span>结构类型、承重墙位置、水电管线布置、使用注意事项</div>
+      <div data-page-node-id="12fdiL6jja5mVYvN80TFEu"><span class="lb hl" data-page-node-id="TBDnJ1zwm0fBER4iKZLbar">交付要件：</span>与竣工验收备案表合称「两书一表」，缺项属违规交房</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="1iczLVLXpCtrdGoX4OluJl"><h3 data-page-node-id="Rx0MjQ0v15DYYVCLXFQCNG">施工图设计文件审查合格书</h3><div class="bd" data-page-node-id="PxXUjpYFCjQ1S9C1499HRE">
+      <div data-page-node-id="OETsZ0aeqdsV8OhnANGorr"><span class="lb" data-page-node-id="ZNGAvCMCSf1BXFpGAvUYno">出具机构：</span>具备资格的施工图审查机构（住建部门认定）</div>
+      <div data-page-node-id="hcBgy1V7PqsweEtayxbxqP"><span class="lb" data-page-node-id="iQeKE8JGbSiEEKRecyucrJ">依据：</span>施工图设计文件审查管理办法</div>
+      <div data-page-node-id="xTji5hRvFa1yTSGSa6z0ww"><span class="lb" data-page-node-id="xxUOIGBCof7YdBAMBq2h8l">核心记载：</span>工程名称、建设单位、审查范围、审查意见（合格）、审查机构名称与印章、审查人员签署</div>
+      <div data-page-node-id="WCPxOmQ4tY8Z9W80r7usbu"><span class="lb" data-page-node-id="WJULAIT8bRwT2pHsH6LWPD">作用：</span>施工许可的前置条件之一</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="vfqDRRJLBl8XW5mcMMwkKZ"><h3 data-page-node-id="yLhhAEn3t9XfPxDyz2mmtZ">建设工程消防验收意见书</h3><div class="bd" data-page-node-id="skDoSXEfF7L0WpKHP4CXoR">
+      <div data-page-node-id="xJ0gGz1kGaG9Ip4mdnByGA"><span class="lb" data-page-node-id="egaLrDR657LDq50CIe7Xog">发证机关：</span>住建主管部门（原公安消防职能已划转）</div>
+      <div data-page-node-id="m0BuHmS5rEvBuAUZxK4KaY"><span class="lb" data-page-node-id="PPPhhvAGogwEDplBYR1J2B">依据：</span>《消防法》第十三条</div>
+      <div data-page-node-id="bEHEjXUDZoY06mfh7uXvB8"><span class="lb" data-page-node-id="ii9YCNULZuap4Qi3u24QlS">核心记载：</span>工程名称、验收范围、综合评定结论（合格 / 不合格）、验收人员与机关印章</div>
+      <div data-page-node-id="YxcIgjs7mvrjLClNAMsSKP"><span class="lb" data-page-node-id="GSrDzGM9aSii8MX6r8K5dt">说明：</span>特殊建设工程实行消防验收，其他建设工程实行备案抽查</div>
+    </div></div>
+
+    <div class="card" data-page-node-id="OCZdfkhQ3qXovlP6w5igDL"><h3 data-page-node-id="aIanc6tnO1rz161xhhJoOS">商品房买卖合同（网签备案）</h3><div class="bd" data-page-node-id="1kCfCfSiuEvHc1NLGVHmRS">
+      <div data-page-node-id="WxFN2aj3UEt2NwzDnAKWMc"><span class="lb" data-page-node-id="xBmCT8NoEm06BsFxo3DdaX">备案机关：</span>房屋交易管理部门</div>
+      <div data-page-node-id="sPWFyezhcxa7DAwJNdNjP2"><span class="lb" data-page-node-id="xkLkLvf2mSMsNNpKGswghP">核心记载：</span>买卖双方、房屋坐落与不动产单元号、建筑面积与套内面积、单价与总价、付款方式、交付日期与条件、面积差异处理、违约责任</div>
+      <div data-page-node-id="a5nD1PiZN1kuCNQ8dP0vmZ"><span class="lb" data-page-node-id="BOZR1kTpv4lC62dg7atBTA">示范文本：</span>住建部与市场监管总局联合制定的示范文本</div>
+      <div data-page-node-id="V1LC2V9OpOyQMrBGrbNteH"><span class="lb" data-page-node-id="EMMFuUuYuRo7VYclIvOPsB">网签：</span>系统生成合同编号与备案二维码</div>
+    </div></div>
+
+  </div>
+  <div class="note" data-page-node-id="mgGHP1Oe2WALbc2uIHDjcN"><b data-page-node-id="LLzHrrLP0xZOAsjKSAg28r">核验真伪的通用思路</b>：① 查编号——各地政务服务平台或发证机关官网提供证书查询；② 核印章——必须是发证机关公章或登记专用章，而非企业章；③ 查配套——单项证件应能与上下游证件形成闭合链条（如预售证上的楼栋号必须落在工规证范围内）；④ 验二维码——2019 年后多数证照已加载二维码，扫码可跳转官方核验页。</div>
+</section>
+
+
+<section class="promo" id="promo" data-page-node-id="120CO8Sz5ZhDWaRdFyPscU">
+  <figure data-page-node-id="yyIfJdFqJBLfmQwcZFBtee">
+    <picture data-page-node-id="dFdnuLNAcB19DMgjYXZ9ec">
+      <source srcset="assets/images/workbuddy-invite-poster.webp" type="image/webp" data-page-node-id="QitYraDJPtBbi4tTUaNFa2">
+      <img src="assets/images/workbuddy-invite-poster.png" alt="WorkBuddy 邀请海报，扫码注册可获取 2000 积分"
+           width="180" id="promoImg" title="点击放大查看" data-page-node-id="MBnFKEqhnri0WVUS3KvUUU">
+    </picture>
+    <figcaption class="cap" data-page-node-id="5zWzOqnb7qX0qOS3amTV5A">点击海报可放大查看</figcaption>
+  </figure>
+  <div class="txt" data-page-node-id="xoHdRnmF0E07tyvPQ2VTav">
+    <h3 data-page-node-id="UJRfJu3nYB3NWYAgPvbjhT">用 WorkBuddy 做财税工作</h3>
+    <p data-page-node-id="q93aPjoFaBu8QWoBQOZ5K0">这份台账从流程梳理、政策核源到 Excel 生成，全程由 WorkBuddy 完成。如果你也想把重复的台账整理、政策比对、报表核对交给 AI 搭子，可以扫码注册试试。</p>
+    <ul data-page-node-id="VVkUnYQQtjytOR9gXAEHNm">
+      <li data-page-node-id="bctKM9X26YqVXHgh7Al29r">政策文件核源与关键词比对，可追溯到发文原文</li>
+      <li data-page-node-id="pgzytPSvGTNP7F5PR7Kszg">零依赖生成 Excel / HTML 台账，双击即开</li>
+      <li data-page-node-id="zaj81HKL6CQDb4ZjvrVXGf">长文档梳理、表格处理、数据核对一体化完成</li>
+    </ul>
+    <a class="cta" href="#promo" onclick="openLightbox();return false;" data-page-node-id="PmDd4zlWoTSqV6rOSNrURb">查看邀请海报</a>
+    <div class="note-sm" data-page-node-id="3jyjQNim7nYLxdRwOaHaVQ">扫码注册 WorkBuddy 即可获取 2000 积分。本页表格数据与积分活动无关联，仅为工具推荐。</div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="邀请海报大图" data-page-node-id="Y8okWrOjIYWXweotPMaFMo">
+  <button class="cl" onclick="closeLightbox()" aria-label="关闭" data-page-node-id="JJMtBdh6NrbBfqa8DEubDW">&times;</button>
+  <img src="assets/images/workbuddy-invite-poster.png" alt="WorkBuddy 邀请海报大图" data-page-node-id="OZtKjPH0zfCmvkF45HE0tt">
+</div>
+
+<footer data-page-node-id="2owPAmZf5ZAFXGKjhnFL34">
+  <div data-page-node-id="OC0Bco9LyoqC6d9TeoVRSx"><strong data-page-node-id="35SnB1dIsbNHF01gTnsv4A">使用说明</strong>：本表为全国通用主线的梳理框架，用于项目前期报建、税务测算与内部台账搭建的索引。每个审批事项已附政策依据，第八、九章为法规总表与证照要素。</div>
+  <div data-page-node-id="nNKHCHPdkK2oqNRfe6nbww">各地在并联审批、承诺制、联合验收、配套费标准等方面差异较大，涉及广州／广东项目请以当地「多规合一」「工建审批」平台的办事指南为准。</div>
+  <div data-page-node-id="jb2KdJCSD9Bka3dR1Gxsq9">税（费）率为基准值，不作计税依据；涉及金额请核对税务机关核定与最新政策原文。</div>
+  <div data-page-node-id="51RvdktAT1iFYIrWx2neUd">政策条款为要点摘述，引用前请核对现行有效文本；证照示意卡不含官方实样，仅供建立台账字段与核验要素之用。</div>
+  <div style="margin-top:8px;color:#a8b1ba" data-page-node-id="YRfcTiK4ONHQCQoj4Trgpt">财税之家 / TaxHome · 房地产项目开发全流程知识库 · 2026-09-24</div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var cnt = document.getElementById('cnt');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  function apply(){
+    var kw = q.value.trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function(tr){
+      var hit = !kw || tr.textContent.toLowerCase().indexOf(kw) !== -1;
+      tr.classList.toggle('hide', !hit);
+      if(hit) shown++;
+    });
+    document.querySelectorAll('section').forEach(function(sec){
+      if(sec.querySelector('tbody')){
+        sec.style.display = sec.querySelectorAll('tbody tr:not(.hide)').length ? '' : 'none';
+      } else if(sec.querySelector('.cards')){
+        var vis = 0;
+        sec.querySelectorAll('.card').forEach(function(c){
+          var hit = !kw || c.textContent.toLowerCase().indexOf(kw) !== -1;
+          c.style.display = hit ? '' : 'none';
+          if(hit) vis++;
+        });
+        sec.style.display = vis ? '' : 'none';
+      }
+    });
+    cnt.textContent = kw ? ('命中 ' + shown + ' / ' + rows.length + ' 条') : ('共 ' + rows.length + ' 条记录 · ' + cards.length + ' 张证照卡');
+  }
+
+  var img = document.getElementById('promoImg');
+  var lb = document.getElementById('lightbox');
+  window.openLightbox = function(){ lb.classList.add('on'); document.body.style.overflow='hidden'; };
+  window.closeLightbox = function(){ lb.classList.remove('on'); document.body.style.overflow=''; };
+  if (img) img.addEventListener('click', window.openLightbox);
+  if (lb) {
+    lb.addEventListener('click', function(e){ if (e.target === lb) window.closeLightbox(); });
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') window.closeLightbox(); });
+
+  q.addEventListener('input', apply);
+  document.getElementById('clr').addEventListener('click', function(){
+    q.value = ''; apply(); q.focus();
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
