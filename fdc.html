@@ -21,13 +21,18 @@
     font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
     font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
-  /* 顶部底栏：整块做成通栏品牌紫（千问 Qwen 主色 #615CED）。
+  /* 顶部底栏：整块做成通栏品牌紫（夸克 Quark logo 主色 #615CED）。
      渐变由深紫 #3F33C4 → 品牌紫 #615CED → 收尾 #635CEF；
      收尾刻意压暗（而非用更浅的紫），使白字对最浅端仍有 4.87:1 对比度，符合 WCAG AA */
   header{background:linear-gradient(135deg,#3f33c4 0%,#615ced 52%,#635cef 100%);
     color:#fff;border-radius:var(--radius);padding:22px;
     margin:0 -22px 20px;border-bottom:none;box-shadow:0 2px 10px rgba(97,92,237,.22)}
   h1{font-size:21px;font-weight:600;margin:0 0 6px;color:#fff;letter-spacing:.2px}
+  /* 标题品牌行：logo 放白色圆角徽章内，避免白底 logo 直接贴在绿底上 */
+  .brand{display:flex;align-items:center;gap:10px;margin:0 0 6px}
+  .brand img{flex:none;width:38px;height:38px;border-radius:9px;background:#fff;
+    padding:3px;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+  .brand h1{margin:0}
   .sub{color:rgba(255,255,255,.94);font-size:13px}
   .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
   .chip{font-size:12px;padding:3px 9px;border-radius:5px;background:var(--bg2);
@@ -58,8 +63,10 @@
 
   section{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
     margin-bottom:16px;overflow:hidden}
-  section > h2{font-size:14.5px;font-weight:600;margin:0;padding:11px 16px;
-    background:var(--bg2);border-bottom:1px solid var(--line2);display:flex;
+  /* 章节小标题：夸克 logo 紫 #615CED · 微软雅黑 16px 加粗 */
+  section > h2{font-size:16px;font-weight:700;margin:0;padding:11px 16px;
+    font-family:"Microsoft YaHei","微软雅黑",-apple-system,"PingFang SC",sans-serif;
+    color:#615ced;background:var(--bg2);border-bottom:1px solid var(--line2);display:flex;
     align-items:center;gap:8px}
   section > h2 .idx{display:inline-flex;align-items:center;justify-content:center;
     width:20px;height:20px;border-radius:5px;font-size:11.5px;font-weight:600;
@@ -163,7 +170,7 @@
   footer{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);
     font-size:12px;color:var(--ink3);line-height:1.8}
   footer a{color:inherit;text-decoration:underline;text-underline-offset:2px;transition:.15s}
-  footer a:hover{color:#178549}
+  footer a:hover{color:#615ced}
 
   mark{background:#fff3b0;padding:0 1px;border-radius:2px}
 
@@ -172,7 +179,7 @@
     .wrap{max-width:none;padding:0}
     .toolbar,nav{display:none}
     section{break-inside:avoid;border-color:#bbb;margin-bottom:10px}
-    /* 打印时去掉蓝底，改用细线分隔，避免大块底色耗墨 */
+    /* 打印时去掉绿底，改用细线分隔，避免大块底色耗墨 */
     header{background:none !important;color:var(--ink);box-shadow:none;
       margin:0 0 10px;padding:0 0 10px;border-bottom:1px solid #000}
     header h1{color:var(--ink)}
@@ -189,7 +196,10 @@
 <div class="wrap" data-page-node-id="kPNwhWGmklWlZG9vZaTL29">
 
 <header data-page-node-id="573puTT8B5SDEXZwEG0Fzf">
-  <h1 data-page-node-id="Jx0gppzGO1tj6e4QjJYKOP">房地产项目开发全流程知识库</h1>
+  <div class="brand">
+    <img src="assets/images/bt.png" alt="财税之家 logo" width="38" height="38" decoding="async">
+    <h1 data-page-node-id="Jx0gppzGO1tj6e4QjJYKOP">房地产项目开发全流程知识库</h1>
+  </div>
   <div class="sub" data-page-node-id="hPR7ZbktFDvG2rzxYKcYLt">监管审批部门 · 文书证件 · 规费税费 · 资质资格 · 政策依据 · 证照要素</div>
   <div class="meta" data-page-node-id="xU6akJwwjC3CVIrOUkEZfA">
     <span class="chip info" data-page-node-id="E4laA3eE9aVqNisl0kBFiQ">口径：全国通用主线</span>
@@ -508,7 +518,8 @@
     <picture data-page-node-id="dFdnuLNAcB19DMgjYXZ9ec">
       <source srcset="assets/images/workbuddy-invite-poster.webp" type="image/webp" data-page-node-id="QitYraDJPtBbi4tTUaNFa2">
       <img src="assets/images/workbuddy-invite-poster.png" alt="WorkBuddy 邀请海报，扫码注册可获取 2000 积分"
-           width="180" id="promoImg" title="点击放大查看" data-page-node-id="MBnFKEqhnri0WVUS3KvUUU">
+           width="750" height="1110" loading="lazy" decoding="async"
+           id="promoImg" title="点击放大查看" data-page-node-id="MBnFKEqhnri0WVUS3KvUUU">
     </picture>
     <figcaption class="cap" data-page-node-id="5zWzOqnb7qX0qOS3amTV5A">点击海报可放大查看</figcaption>
   </figure>
@@ -535,7 +546,7 @@
   <div data-page-node-id="nNKHCHPdkK2oqNRfe6nbww">各地在并联审批、承诺制、联合验收、配套费标准等方面差异较大，涉及广州／广东项目请以当地「多规合一」「工建审批」平台的办事指南为准。</div>
   <div data-page-node-id="jb2KdJCSD9Bka3dR1Gxsq9">税（费）率为基准值，不作计税依据；涉及金额请核对税务机关核定与最新政策原文。</div>
   <div data-page-node-id="51RvdktAT1iFYIrWx2neUd">政策条款为要点摘述，引用前请核对现行有效文本；证照示意卡不含官方实样，仅供建立台账字段与核验要素之用。</div>
-  <div style="margin-top:8px;color:#a8b1ba" data-page-node-id="YRfcTiK4ONHQCQoj4Trgpt"><a href="https://cntaxhome.github.io/" target="_blank" rel="noopener" data-page-node-id="gNrzBv6LLk1uPXfYhq2Sda">财税之家</a> / CntaxHome · 房地产项目开发全流程知识库 · 2026-09-24</div>
+  <div style="margin-top:8px;color:#a8b1ba;font-size:14px;font-weight:700" data-page-node-id="YRfcTiK4ONHQCQoj4Trgpt"><a href="https://cntaxhome.github.io/" target="_blank" rel="noopener" data-page-node-id="gNrzBv6LLk1uPXfYhq2Sda">财税之家</a> / CntaxHome · 房地产项目开发全流程知识库 · 2026-09-24</div>
 </footer>
 
 </div>
